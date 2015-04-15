@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c3="http://c3faces.martinlinha.com/ns"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="main-template.xhtml" >
+        <ui:define name="chart">
+            <h:form>
+                <c3:bar id="chart" data="#{changeChartTypeBean.data}" />
+
+                <h:outputLabel for="chartTypeCombo" value="Chart type " />
+                <h:selectOneMenu id="chartTypeCombo" value="#{changeChartTypeBean.data.chartType}">
+                    <f:selectItem itemValue="LINE" itemLabel="Chart type - LINE" />
+                    <f:selectItem itemValue="PIE" itemLabel="Chart type - PIE" />
+                    <f:selectItem itemValue="BAR" itemLabel="Chart type - BAR" />
+                    <f:selectItem itemValue="GAUGE" itemLabel="Chart type - GAUGE" />
+                    <f:selectItem itemValue="AREA" itemLabel="Chart type - AREA" />
+                    <f:selectItem itemValue="AREASPLINE" itemLabel="Chart type - AREASPLINE" />
+                    <f:selectItem itemValue="AREASTEP" itemLabel="Chart type - AREASTEP" />
+                    <f:selectItem itemValue="DONUT" itemLabel="Chart type - DONUT" />
+                    <f:selectItem itemValue="SCATTER" itemLabel="Chart type - SCATTER" />
+                    <f:selectItem itemValue="SPLINE" itemLabel="Chart type - SPLINE" />
+                    <f:selectItem itemValue="STEP" itemLabel="Chart type - STEP" />
+
+                    <f:ajax render="chart" execute="chart" />
+                </h:selectOneMenu>
+
+
+            </h:form>
+        </ui:define>
+        <ui:define name="faceletCode">
+
+        </ui:define>
+        <ui:define name="javaCode">
+
+        </ui:define>
+    </ui:composition>
+</html>

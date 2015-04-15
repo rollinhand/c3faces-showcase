@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c3="http://c3faces.martinlinha.com/ns"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition template="main-template.xhtml" >
+        <ui:define name="chart">
+            <h:form>
+                <c3:donut data="#{chartTypesBean.model}" />
+            </h:form>
+        </ui:define>
+                <ui:define name="faceletCode">
+            <pre style="background:#f9f9f9;color:#080808">            &lt;<span style="color:#bf4f24">h:form</span>>
+                &lt;<span style="color:#bf4f24">c3:donut</span> <span style="color:#bf4f24">model</span>=<span style="color:#0b6125">"#<span style="background:rgba(111,139,186,0.15);color:#080808">{chartTypesBean.model}</span>"</span> />
+            &lt;/<span style="color:#bf4f24">h:form</span>>
+            </pre>
+        </ui:define>
+        <ui:define name="javaCode">
+            <pre style="background:#f9f9f9;color:#080808">@ManagedBean(name <span style="color:#794938">=</span> <span style="color:#0b6125">"chartTypesBean"</span>)
+@<span style="color:#a71d5d;font-style:italic">RequestScoped</span>
+<span style="color:#a71d5d;font-style:italic">public</span> <span style="color:#a71d5d;font-style:italic">class</span> <span style="color:#bf4f24">ChartTypesBean</span> <span style="color:#a71d5d;font-style:italic">implements</span> <span style="color:#bf4f24">Serializable</span> {
+
+    <span style="color:#a71d5d;font-style:italic">private</span> <span style="color:#a71d5d;font-style:italic">C3Model</span> model <span style="color:#794938">=</span> <span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3Model</span>();
+
+    <span style="color:#a71d5d;font-style:italic">@PostConstruct</span>
+    <span style="color:#a71d5d;font-style:italic">public</span> <span style="color:#a71d5d;font-style:italic">void</span> <span style="color:#bf4f24">init</span>() {
+        model<span style="color:#794938">.</span>getDataSets()<span style="color:#794938">.</span>add(<span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3ViewDataSet</span>(<span style="color:#0b6125">"Data sample 1"</span>,
+                <span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3DataSet</span>(<span style="color:#a71d5d;font-style:italic">Arrays</span><span style="color:#794938">.</span>asList(<span style="color:#811f24;font-weight:700">22</span>, <span style="color:#811f24;font-weight:700">91</span>, <span style="color:#811f24;font-weight:700">158</span>, <span style="color:#811f24;font-weight:700">93</span>, <span style="color:#811f24;font-weight:700">201</span>, <span style="color:#811f24;font-weight:700">11</span>)), <span style="color:#0b6125">"#1060E0"</span>));
+        model<span style="color:#794938">.</span>getDataSets()<span style="color:#794938">.</span>add(<span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3ViewDataSet</span>(<span style="color:#0b6125">"Data sample 2"</span>,
+                <span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3DataSet</span>(<span style="color:#a71d5d;font-style:italic">Arrays</span><span style="color:#794938">.</span>asList(<span style="color:#811f24;font-weight:700">1</span>, <span style="color:#811f24;font-weight:700">72</span>, <span style="color:#811f24;font-weight:700">23</span>, <span style="color:#811f24;font-weight:700">33</span>, <span style="color:#811f24;font-weight:700">21</span>)), <span style="color:#0b6125">"#16525E"</span>));
+        model<span style="color:#794938">.</span>getDataSets()<span style="color:#794938">.</span>add(<span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3ViewDataSet</span>(<span style="color:#0b6125">"Data sample 3"</span>,
+                <span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3DataSet</span>(<span style="color:#a71d5d;font-style:italic">Arrays</span><span style="color:#794938">.</span>asList(<span style="color:#811f24;font-weight:700">45</span>, <span style="color:#811f24;font-weight:700">231</span>, <span style="color:#811f24;font-weight:700">2</span>, <span style="color:#811f24;font-weight:700">151</span>, <span style="color:#811f24;font-weight:700">341</span>, <span style="color:#811f24;font-weight:700">254</span>)), <span style="color:#0b6125">"#0792AD"</span>));
+        model<span style="color:#794938">.</span>getDataSets()<span style="color:#794938">.</span>add(<span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3ViewDataSet</span>(<span style="color:#0b6125">"Data sample 4"</span>,
+                <span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3DataSet</span>(<span style="color:#a71d5d;font-style:italic">Arrays</span><span style="color:#794938">.</span>asList(<span style="color:#811f24;font-weight:700">88</span>, <span style="color:#811f24;font-weight:700">13</span>, <span style="color:#811f24;font-weight:700">258</span>, <span style="color:#811f24;font-weight:700">211</span>, <span style="color:#811f24;font-weight:700">151</span>)), <span style="color:#0b6125">"#8FE2F2"</span>));
+
+    }
+
+    <span style="color:#a71d5d;font-style:italic">public</span> <span style="color:#a71d5d;font-style:italic">C3Model</span> <span style="color:#bf4f24">getModel</span>() {
+        <span style="color:#794938">return</span> model;
+    }
+
+    <span style="color:#a71d5d;font-style:italic">public</span> <span style="color:#a71d5d;font-style:italic">void</span> <span style="color:#bf4f24">setModel</span>(<span style="color:#a71d5d;font-style:italic">C3Model</span> <span style="color:#234a97">model</span>) {
+        <span style="color:#234a97">this</span><span style="color:#794938">.</span>model <span style="color:#794938">=</span> model;
+    }
+}
+
+            </pre>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>C3faces - c3.js based JSF framework </title>
+        <h:outputStylesheet library="css" name="style.css" />
+    </h:head>
+    <body>
+        <div id="header"></div>
+        <div id="main-container">
+            <div id="logopanel">
+                <h1>C3faces</h1>
+                <h2>c3.js based JSF framework</h2>
+            </div>
+            <div id="content" >
+                <div id="topmenu">
+                    <h:form>
+                        <ul>
+                            <li>
+                                <h:commandLink value="documentation"/>
+                            </li>
+                            <li>
+                                <h:commandLink value="download"/>
+                            </li>
+                        </ul>
+                    </h:form>
+                </div>
+                <h:form>
+                    <div id="containermenu"> 
+                        <h2>Examples</h2>
+                        <ul>
+                            <li><h:commandLink value="Changing chart's data" action="chart_values"/></li>
+                            <li><h:commandLink value="Chart properties defined in Facelet" action="chart_properties_facelet"/></li>
+                            <li><h:commandLink value="Dynamically change chart type" action="change_chart_type"/></li>
+                            <li><h:commandLink value="Value change listener" action="chart_value_listener"/></li>
+                        </ul>
+                        <h2>Chart types</h2>
+                        <ul>
+                            <li><h:commandLink value="Area" action="area"/></li>
+                            <li><h:commandLink value="Area-spline" action="area-spline"/></li>
+                            <li><h:commandLink value="Area-step" action="area-step"/></li>
+                            <li><h:commandLink value="Bar" action="bar"/></li>
+                            <li><h:commandLink value="Donut" action="donut"/></li>
+                            <li><h:commandLink value="Gauge" action="gauge"/></li>
+                            <li><h:commandLink value="Pie" action="pie"/></li>
+                            <li><h:commandLink value="Scatter" action="scatter"/></li>
+                            <li><h:commandLink value="Spline" action="spline"/></li>
+                            <li><h:commandLink value="Step" action="step"/></li>
+                        </ul>
+                        <h2>Sandbox</h2>
+                        <ul>
+                            <li><h:commandLink value="Play" action="sandbox"/></li>
+                        </ul>
+                    </div>
+                </h:form>
+                <div style="float: right; width: 80%;" >
+                    <ui:insert name="chart" />
+                    <div style="width: 100%">
+                        <h3>Facelet code</h3>
+                        <ui:insert name="faceletCode"/>
+                    </div>
+                    <div style="width: 100%">
+                        <h3>Java code</h3>
+                        <ui:insert name="javaCode" />
+                    </div>
+                </div>
+                <div style="clear: both;" />
+            </div>
+            <!--            <div id="footer">
+                            
+                        </div>-->
+        </div>
+    </body>
+</html>

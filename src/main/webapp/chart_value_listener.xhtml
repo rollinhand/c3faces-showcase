@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c3="http://c3faces.martinlinha.com/ns"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="main-template.xhtml" >
+        <ui:define name="chart">
+            <h:form>
+                <c3:areaSpline id="chart" data="#{chartValueChangeListenerBean.data}">
+                    <f:valueChangeListener type="com.martinlinha.showcase.listener.DataChangeValueListener" />
+                    <f:ajax render="chart chartMessage" execute="chart chartMessage"  />
+                </c3:areaSpline>
+                <h:message id="chartMessage" for="chart" />
+                
+            </h:form>
+        </ui:define>
+
+
+
+        <ui:define name="faceletCode">
+
+        </ui:define>
+        <ui:define name="javaCode">
+
+        </ui:define>
+    </ui:composition>
+</html>

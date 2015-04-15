@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c3="http://c3faces.martinlinha.com/ns"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="main-template.xhtml" >
+        <ui:define name="chart">
+            <h:form>
+                <c3:line id="pie" data="#{sandboxBean.data}" binding="#{sandboxBean.chart}" >
+                    <c3:size height="300" width="300" />
+                    <c3:grids>
+                        <c3:gridX text="test" value="1" />
+                    </c3:grids>
+                    <c3:legend show="false" />
+                    <f:ajax execute="@form" render="@form" event="click"  /> 
+                </c3:line>
+                
+                <c3:pie data="#{sandboxBean.data}" >
+                    
+                </c3:pie>
+                
+                
+
+                <h:commandButton value="update" action="#{sandboxBean.resizeTest()}">
+                    <f:ajax execute="pie" render="pie" /> 
+                </h:commandButton>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
