@@ -1,11 +1,12 @@
 package com.martinlinha.showcase.backingbean;
 
+import com.martinlinha.c3faces.component.Bar;
 import com.martinlinha.c3faces.component.C3Chart;
 import com.martinlinha.c3faces.constants.ChartType;
-import com.martinlinha.c3faces.script.modifier.LegendHide;
-import com.martinlinha.c3faces.script.modifier.LegendShow;
 import com.martinlinha.c3faces.model.C3DataSet;
 import com.martinlinha.c3faces.model.C3ViewDataSet;
+import com.martinlinha.c3faces.script.modifier.LegendHide;
+import com.martinlinha.c3faces.script.modifier.LegendShow;
 import com.martinlinha.c3faces.script.property.Data;
 import com.martinlinha.c3faces.script.property.GridProperties;
 import com.martinlinha.c3faces.script.property.Legend;
@@ -17,6 +18,7 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -27,10 +29,13 @@ import javax.faces.bean.ViewScoped;
 public class SandboxBean implements Serializable {
 
     private Data data = new Data();
+    private Data data2 = new Data();
     private C3Chart chart;
     private int i = 0;
     private final C3ViewDataSet set = new C3ViewDataSet("BRAND NEW", new C3DataSet(Arrays.asList(50, 50, 50, 50, 50)), "#16525E");
     private final C3ViewDataSet set2 = new C3ViewDataSet("BRAND NEW 2", new C3DataSet(Arrays.asList(150, 250, 350, 50, 50)), "#16525E");
+    private boolean rendered = false;
+    private String title = "old ttl";
 
     @PostConstruct
     public void init() {
@@ -42,8 +47,18 @@ public class SandboxBean implements Serializable {
                 new C3DataSet(Arrays.asList(45, 231, 2, 151, 341, 254)), "#0792AD"));
         data.getDataSets().add(new C3ViewDataSet("Data sample 4",
                 new C3DataSet(Arrays.asList(88, 13, 258, 211, 151)), "#8FE2F2"));
-        System.out.println("Chart: " + chart);
+        data2.getDataSets().add(new C3ViewDataSet("Data sample 1",
+                new C3DataSet(Arrays.asList(22, 91, 158, 93, 201, 11)), "#1060E0"));
+        data2.getDataSets().add(new C3ViewDataSet("Data sample 2",
+                new C3DataSet(Arrays.asList(1, 72, 23, 33, 21)), "#16525E"));
+        data2.getDataSets().add(new C3ViewDataSet("Data sample 3",
+                new C3DataSet(Arrays.asList(45, 231, 2, 151, 341, 254)), "#0792AD"));
+        data2.getDataSets().add(new C3ViewDataSet("Data sample 4",
+                new C3DataSet(Arrays.asList(88, 13, 258, 211, 151)), "#8FE2F2"));
 
+        
+        Bar bar = new Bar();
+        
 //        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -55,12 +70,12 @@ public class SandboxBean implements Serializable {
 //            legend.setHide(true);
 //            chart.getComponentProperties().addProperty(legend);
 //        }
-
     }
 
     public void resizeTest() {
 
         System.out.println("Chart: " + chart);
+        System.out.println("CONTEXT: " + FacesContext.getCurrentInstance().getPartialViewContext().getPartialResponseWriter());
 
         Set<C3ViewDataSet> newDataSet = new HashSet<C3ViewDataSet>();
         newDataSet.add(new C3ViewDataSet("Whole new! 1",
@@ -68,16 +83,15 @@ public class SandboxBean implements Serializable {
         newDataSet.add(new C3ViewDataSet("Whole new! 2",
                 new C3DataSet(Arrays.asList(5, 13, 100, 211, 6)), "#FFCCFF"));
 
-        Legend legend = new Legend();
-        chart.getComponentProperties().addProperty(legend);
-        legend.addListener(new LegendHide().addModifier(new LegendShow()));
-        legend.setHide(true);
-        
+        Legend legend = (Legend) chart.getComponentProperties().getProperty(Legend.NAME);
+        if (legend != null) {
+            legend.addListener(new LegendHide().addModifier(new LegendShow()));
+        }
+
+        GridProperties grids = (GridProperties) chart.getComponentProperties().getProperty("grid");
+
         if (i < 1) {
-
-            GridProperties grids = (GridProperties) chart.getComponentProperties().getProperty("grid");
             grids.removeXGrids();
-
             Size size = (Size) chart.getComponentProperties().getProperty(Size.NAME);
             size.setHeight(80);
             size.setHeight(120);
@@ -88,20 +102,26 @@ public class SandboxBean implements Serializable {
 
             data.getDataSets().add(set2);
             data.getDataSets().add(set);
+            data2.getDataSets().add(set2);
+            data2.getDataSets().add(set);
 
-            data.setChartType(ChartType.STEP);
+            data.setChartType(ChartType.BAR);
+            data2.setChartType(ChartType.BAR);
 
             set.setType(ChartType.BAR);
             set2.setType(ChartType.SPLINE);
 
             i++;
         } else if (i < 3) {
+            grids.addYGrid(40d, "test 1");
+            grids.addYGrid(300d, "test 2");
+
             set2.setName("NEW NAME");
             set.setName("NEW NAME HA HA HA");
-            legend.setHide(true);
             legend.setShow(true);
             i++;
         } else if (i >= 3 && i < 5) {
+            grids.removeYGrids();
             set2.setName("New nice name.");
             data.getDataSets().remove(set);
             i++;
@@ -130,7 +150,11 @@ public class SandboxBean implements Serializable {
     }
 
     public String getTitle() {
-        return "Nice title";
+        return title;
+    }
+
+    public void generateTitle() {
+        title = "new ttl";
     }
 
     public Data getDonutData() {
@@ -138,5 +162,29 @@ public class SandboxBean implements Serializable {
         Data data = new Data();
         data.getDataSets().add(set);
         return data;
+    }
+
+    public boolean isRendered() {
+        return rendered;
+    }
+
+    public void setRendered(boolean rendered) {
+        this.rendered = rendered;
+    }
+
+    public void renderIt() {
+        this.rendered = true;
+    }
+
+    public Data getData2() {
+        return data2;
+    }
+
+    public void setData2(Data data2) {
+        this.data2 = data2;
+    }
+
+    public void sayIt() {
+        System.out.println(FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds());
     }
 }

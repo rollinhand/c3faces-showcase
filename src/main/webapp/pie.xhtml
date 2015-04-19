@@ -6,47 +6,45 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:composition template="main-template.xhtml" >
+        <ui:define name="pageName">Pie</ui:define>
+
         <ui:define name="chart">
             <h:form>
-                <c3:pie data="#{chartTypesBean.model}" />
+                <c3:pie data="#{chartTypesBean.data}" />
             </h:form>
         </ui:define>
-                <ui:define name="faceletCode">
-            <pre style="background:#f9f9f9;color:#080808">            &lt;<span style="color:#bf4f24">h:form</span>>
-                &lt;<span style="color:#bf4f24">c3:pie</span> <span style="color:#bf4f24">model</span>=<span style="color:#0b6125">"#<span style="background:rgba(111,139,186,0.15);color:#080808">{chartTypesBean.model}</span>"</span> />
-            &lt;/<span style="color:#bf4f24">h:form</span>>
-            </pre>
+        <ui:define name="faceletCode">
+            &lt;h:form&gt;
+                 &lt;c3:pie data="# {chartTypesBean.data}" /&gt;
+            &lt;/h:form&gt;
         </ui:define>
         <ui:define name="javaCode">
-            <pre style="background:#f9f9f9;color:#080808">@ManagedBean(name <span style="color:#794938">=</span> <span style="color:#0b6125">"chartTypesBean"</span>)
-@<span style="color:#a71d5d;font-style:italic">RequestScoped</span>
-<span style="color:#a71d5d;font-style:italic">public</span> <span style="color:#a71d5d;font-style:italic">class</span> <span style="color:#bf4f24">ChartTypesBean</span> <span style="color:#a71d5d;font-style:italic">implements</span> <span style="color:#bf4f24">Serializable</span> {
+            @ManagedBean(name = "chartTypesBean")
+            @RequestScoped
+            public class ChartTypesBean implements Serializable {
 
-    <span style="color:#a71d5d;font-style:italic">private</span> <span style="color:#a71d5d;font-style:italic">C3Model</span> model <span style="color:#794938">=</span> <span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3Model</span>();
+            private Data data = new Data();
 
-    <span style="color:#a71d5d;font-style:italic">@PostConstruct</span>
-    <span style="color:#a71d5d;font-style:italic">public</span> <span style="color:#a71d5d;font-style:italic">void</span> <span style="color:#bf4f24">init</span>() {
-        model<span style="color:#794938">.</span>getDataSets()<span style="color:#794938">.</span>add(<span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3ViewDataSet</span>(<span style="color:#0b6125">"Data sample 1"</span>,
-                <span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3DataSet</span>(<span style="color:#a71d5d;font-style:italic">Arrays</span><span style="color:#794938">.</span>asList(<span style="color:#811f24;font-weight:700">22</span>, <span style="color:#811f24;font-weight:700">91</span>, <span style="color:#811f24;font-weight:700">158</span>, <span style="color:#811f24;font-weight:700">93</span>, <span style="color:#811f24;font-weight:700">201</span>, <span style="color:#811f24;font-weight:700">11</span>)), <span style="color:#0b6125">"#1060E0"</span>));
-        model<span style="color:#794938">.</span>getDataSets()<span style="color:#794938">.</span>add(<span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3ViewDataSet</span>(<span style="color:#0b6125">"Data sample 2"</span>,
-                <span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3DataSet</span>(<span style="color:#a71d5d;font-style:italic">Arrays</span><span style="color:#794938">.</span>asList(<span style="color:#811f24;font-weight:700">1</span>, <span style="color:#811f24;font-weight:700">72</span>, <span style="color:#811f24;font-weight:700">23</span>, <span style="color:#811f24;font-weight:700">33</span>, <span style="color:#811f24;font-weight:700">21</span>)), <span style="color:#0b6125">"#16525E"</span>));
-        model<span style="color:#794938">.</span>getDataSets()<span style="color:#794938">.</span>add(<span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3ViewDataSet</span>(<span style="color:#0b6125">"Data sample 3"</span>,
-                <span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3DataSet</span>(<span style="color:#a71d5d;font-style:italic">Arrays</span><span style="color:#794938">.</span>asList(<span style="color:#811f24;font-weight:700">45</span>, <span style="color:#811f24;font-weight:700">231</span>, <span style="color:#811f24;font-weight:700">2</span>, <span style="color:#811f24;font-weight:700">151</span>, <span style="color:#811f24;font-weight:700">341</span>, <span style="color:#811f24;font-weight:700">254</span>)), <span style="color:#0b6125">"#0792AD"</span>));
-        model<span style="color:#794938">.</span>getDataSets()<span style="color:#794938">.</span>add(<span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3ViewDataSet</span>(<span style="color:#0b6125">"Data sample 4"</span>,
-                <span style="color:#794938">new</span> <span style="color:#a71d5d;font-style:italic">C3DataSet</span>(<span style="color:#a71d5d;font-style:italic">Arrays</span><span style="color:#794938">.</span>asList(<span style="color:#811f24;font-weight:700">88</span>, <span style="color:#811f24;font-weight:700">13</span>, <span style="color:#811f24;font-weight:700">258</span>, <span style="color:#811f24;font-weight:700">211</span>, <span style="color:#811f24;font-weight:700">151</span>)), <span style="color:#0b6125">"#8FE2F2"</span>));
+            @PostConstruct
+            public void init() {
+                data.getDataSets().add(new C3ViewDataSet("Data sample 1",
+                 new C3DataSet(Arrays.asList(22, 91, 158, 93, 201, 11)), "#1060E0"));
+                data.getDataSets().add(new C3ViewDataSet("Data sample 2",
+                 new C3DataSet(Arrays.asList(1, 72, 23, 33, 21)), "#16525E"));
+                data.getDataSets().add(new C3ViewDataSet("Data sample 3",
+                 new C3DataSet(Arrays.asList(45, 231, 2, 151, 341, 254)), "#0792AD"));
+                data.getDataSets().add(new C3ViewDataSet("Data sample 4",
+                 new C3DataSet(Arrays.asList(88, 13, 258, 211, 151)), "#8FE2F2"));
+            }
 
-    }
+            public Data getData() {
+                 return data;
+            }
 
-    <span style="color:#a71d5d;font-style:italic">public</span> <span style="color:#a71d5d;font-style:italic">C3Model</span> <span style="color:#bf4f24">getModel</span>() {
-        <span style="color:#794938">return</span> model;
-    }
-
-    <span style="color:#a71d5d;font-style:italic">public</span> <span style="color:#a71d5d;font-style:italic">void</span> <span style="color:#bf4f24">setModel</span>(<span style="color:#a71d5d;font-style:italic">C3Model</span> <span style="color:#234a97">model</span>) {
-        <span style="color:#234a97">this</span><span style="color:#794938">.</span>model <span style="color:#794938">=</span> model;
-    }
-}
-
-            </pre>
+            public void setData(Data data) {
+                  this.data = data;
+              }
+            }
         </ui:define>
     </ui:composition>
 </html>

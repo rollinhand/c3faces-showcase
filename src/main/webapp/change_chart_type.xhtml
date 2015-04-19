@@ -7,8 +7,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="main-template.xhtml" >
+        <ui:define name="pageName">Dynamically change chart type</ui:define>
+
         <ui:define name="chart">
             <h:form>
+
+
                 <c3:bar id="chart" data="#{changeChartTypeBean.data}" />
 
                 <h:outputLabel for="chartTypeCombo" value="Chart type " />

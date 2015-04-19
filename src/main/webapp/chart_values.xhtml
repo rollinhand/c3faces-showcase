@@ -7,8 +7,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="main-template.xhtml" >
+        <ui:define name="pageName">Changing chart's data</ui:define>
         <ui:define name="chart">
             <h:form>
+
+
+
                 <c3:spline id="chart" data="#{chartValuesBean.data}"/>
 
                 <h:panelGrid columns="4">
