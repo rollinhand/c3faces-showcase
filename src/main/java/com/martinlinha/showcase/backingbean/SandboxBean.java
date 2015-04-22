@@ -1,6 +1,5 @@
 package com.martinlinha.showcase.backingbean;
 
-import com.martinlinha.c3faces.component.Bar;
 import com.martinlinha.c3faces.component.C3Chart;
 import com.martinlinha.c3faces.constants.ChartType;
 import com.martinlinha.c3faces.model.C3DataSet;
@@ -28,6 +27,8 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class SandboxBean implements Serializable {
 
+    private C3ViewDataSet selectedValue;
+    private Set<C3ViewDataSet> newDataSet = null;
     private Data data = new Data();
     private Data data2 = new Data();
     private C3Chart chart;
@@ -56,9 +57,6 @@ public class SandboxBean implements Serializable {
         data2.getDataSets().add(new C3ViewDataSet("Data sample 4",
                 new C3DataSet(Arrays.asList(88, 13, 258, 211, 151)), "#8FE2F2"));
 
-        
-        Bar bar = new Bar();
-        
 //        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -73,15 +71,8 @@ public class SandboxBean implements Serializable {
     }
 
     public void resizeTest() {
-
         System.out.println("Chart: " + chart);
         System.out.println("CONTEXT: " + FacesContext.getCurrentInstance().getPartialViewContext().getPartialResponseWriter());
-
-        Set<C3ViewDataSet> newDataSet = new HashSet<C3ViewDataSet>();
-        newDataSet.add(new C3ViewDataSet("Whole new! 1",
-                new C3DataSet(Arrays.asList(88, 13, 2, 2, 151)), "#FFEEFF"));
-        newDataSet.add(new C3ViewDataSet("Whole new! 2",
-                new C3DataSet(Arrays.asList(5, 13, 100, 211, 6)), "#FFCCFF"));
 
         Legend legend = (Legend) chart.getComponentProperties().getProperty(Legend.NAME);
         if (legend != null) {
@@ -126,10 +117,24 @@ public class SandboxBean implements Serializable {
             data.getDataSets().remove(set);
             i++;
         } else if (i >= 4 && i < 6) {
+            newDataSet = new HashSet<C3ViewDataSet>();
+            newDataSet.add(new C3ViewDataSet("Whole new! 1",
+                    new C3DataSet(Arrays.asList(88, 13, 2, 2, 151)), "#FFEEFF"));
+            newDataSet.add(new C3ViewDataSet("Whole new! 2",
+                    new C3DataSet(Arrays.asList(5, 13, 100, 211, 6)), "#FFCCFF"));
+
             data.setDataSets(newDataSet);
             i++;
         } else if (i >= 5 && i < 7) {
+            int c = 20;
+            for (C3ViewDataSet dataSet : newDataSet) {
+                dataSet.setDataSet(new C3DataSet(Arrays.asList(c, c, c)));
+                c += 50;
+            }
+            i++;
+        } else if (i >= 6 && i < 8) {
             data = null;
+
         }
     }
 
@@ -187,4 +192,13 @@ public class SandboxBean implements Serializable {
     public void sayIt() {
         System.out.println(FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds());
     }
+
+    public C3ViewDataSet getSelectedValue() {
+        return selectedValue;
+    }
+
+    public void setSelectedValue(C3ViewDataSet selectedValue) {
+        this.selectedValue = selectedValue;
+    }
+
 }

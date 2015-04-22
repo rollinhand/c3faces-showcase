@@ -2,7 +2,6 @@ package com.martinlinha.showcase.helper;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import javax.faces.view.facelets.FaceletsResourceResolver;
 import javax.faces.view.facelets.ResourceResolver;
 
 /**
@@ -10,7 +9,7 @@ import javax.faces.view.facelets.ResourceResolver;
  * @author Martin Linha
  */
 @SuppressWarnings("deprecation")
-@FaceletsResourceResolver
+//@FaceletsResourceResolver
 public class CustomResourceResolver extends ResourceResolver {
 
     private ResourceResolver resourceResolver;

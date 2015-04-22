@@ -5,9 +5,25 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-    <ui:composition template="main-template.xhtml" >
+    <ui:composition template="template.xhtml" >
         <ui:define name="pageName">C3.js based JSF Framework</ui:define>
+        <ui:define name="content">
+            <h2>About</h2>
+            <p>C3Faces is C3.js based JSF framework. Its API can be used to create C3.js charts with dynamically changing complex visual animations.
+                It also contains out of the box set of components to start rendering these charts immediately.
+            </p>
+            <p>Core features are:
 
+                <ul><li>With JSF declarative way you can create complex charts and define their visual attributes in a really simple manner.</li>
+                    <li>Supported are all the main JSF features. Like ajax, value change listeners, converters, etc.</li>
+                    <li>Compatible with today's most popular JSF framework, Primefaces.</li>
+                </ul>
+            </p>
 
+            <p style="font-weight: bold;">See examples in the left main menu to see C3Faces in action!</p>
+
+            <h2>Get it!</h2>
+            <p>See project's <a href="https://github.com/martin-linha/c3faces">GitHub page</a> for download, issues, documentation, etc.</p>
+        </ui:define>
     </ui:composition>
 </html>
