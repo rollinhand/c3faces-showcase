@@ -6,19 +6,15 @@
     <h:head>
         <title><ui:insert name="pageName" /></title>
         <h:outputStylesheet library="css" name="style.css" />
-        <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
-        <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
-        <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js" type="text/javascript"></script>
-        <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJava.js" type="text/javascript"></script>
-        <link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />
-
+        <h:outputScript library="css" target="head" name="highlight.pack.js" />
+        <h:outputStylesheet library="css" name="default.css" />
     </h:head>
     <body>
         <div id="header"></div>
         <div id="main-container">
             <div id="logopanel">
-                <h1>C3faces</h1>
-                <h2>c3.js based JSF framework</h2>
+                <h1><a href="http://c3faces.martinlinha.com/" title="C3Faces - C3.js based JSF chart framework">C3Faces</a></h1>
+                <h2>c3.js based JSF chart framework</h2>
             </div>
             <div id="content" >
                 <div id="topmenu">
@@ -48,7 +44,8 @@
                         </ul>
                         <h2>Complex animations</h2>
                         <ul>
-                            <li><h:commandLink value="Complex animations with editable values" action="editable_complex_animation"/></li>
+                            <li><h:commandLink value="Bulk server side changes" action="bulk_changes"/></li>
+                            <li><h:commandLink value="Bulk editable server side changes" action="bulk_changes_editable"/></li>
                         </ul>
 
                         <h2>Chart types</h2>
@@ -64,10 +61,6 @@
                             <li><h:commandLink value="Spline" action="spline"/></li>
                             <li><h:commandLink value="Step" action="step"/></li>
                         </ul>
-                        <h2>Sandbox</h2>
-                        <ul>
-                            <li><h:commandLink value="Play" action="sandbox"/></li>
-                        </ul>
                     </div>
                 </h:form>
                 <div style="float: right; width: 80%;" >
@@ -77,8 +70,7 @@
                 <div style="clear: both;" />
             </div>
         </div>
-        <script type="text/javascript">
-            SyntaxHighlighter.all()
+        <script>hljs.initHighlightingOnLoad();
         </script>
     </body>
 </html>

@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c3="http://c3faces.martinlinha.com/ns"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="main-template.xhtml" >
+        <ui:define name="pageName">Bulk editable server side changes</ui:define>
+
+        <ui:define name="chart">
+            <h:form>
+                <h:panelGroup layout="block" id="chartGrid" style="margin: 0 auto; margin-bottom: 15px;">
+                    <c3:areaSpline id="chart" data="#{editableComplexAnimationBean.data}"  >
+                        <c3:grids />
+                        <c3:size />
+                    </c3:areaSpline>
+                    <p:commandButton value="Submit the form and see the animations!"  update="@parent" />
+                </h:panelGroup>
+
+                <p:panel header="Define data sets" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5" id="add">
+                        <h:outputLabel value="Name :" for="txt_title"></h:outputLabel>
+                        <p:inputText id="txt_title" value="#{editableComplexAnimationBean.dataSetToAdd.name}" required="true"/>
+
+                        <h:outputLabel value="Color : *" for="txt_author"></h:outputLabel>
+                        <p:inputText id="txt_author" value="#{editableComplexAnimationBean.dataSetToAdd.color}" required="true"/>
+
+                        <h:outputLabel for="chartTypeCombo" value="Chart type " />
+                        <h:selectOneMenu id="chartTypeCombo" value="#{editableComplexAnimationBean.dataSetToAdd.type}">
+                            <f:selectItem itemValue="line" itemLabel="Chart type - LINE" />
+                            <f:selectItem itemValue="pie" itemLabel="Chart type - PIE" />
+                            <f:selectItem itemValue="bar" itemLabel="Chart type - BAR" />
+                            <f:selectItem itemValue="gauge" itemLabel="Chart type - GAUGE" />
+                            <f:selectItem itemValue="area" itemLabel="Chart type - AREA" />
+                            <f:selectItem itemValue="area-spline" itemLabel="Chart type - AREASPLINE" />
+                            <f:selectItem itemValue="area-step" itemLabel="Chart type - AREASTEP" />
+                            <f:selectItem itemValue="donut" itemLabel="Chart type - DONUT" />
+                            <f:selectItem itemValue="scatter" itemLabel="Chart type - SCATTER" />
+                            <f:selectItem itemValue="spline" itemLabel="Chart type - SPLINE" />
+                            <f:selectItem itemValue="step" itemLabel="Chart type - STEP" />
+                        </h:selectOneMenu>
+                        <p:commandButton id="btn_reset" value="Reset" type="reset"/>
+                        <p:commandButton id="btn_add" value="Add (chart values will be randomly generated)" update="add viewDataSetsTable"
+                                         action="#{editableComplexAnimationBean.reinit}"
+                                         actionListener="#{editableComplexAnimationBean.generateDummyData(editableComplexAnimationBean.dataSetToAdd)}">
+                            <p:collector value="#{editableComplexAnimationBean.dataSetToAdd}" addTo="#{editableComplexAnimationBean.data.dataSets}" unique="true"/>
+                        </p:commandButton>
+                    </h:panelGrid>
+
+                    <p:dataTable id="viewDataSetsTable" var="dataSet" value="#{editableComplexAnimationBean.data.dataSets}" editable="true" style="margin-bottom:20px">
+                        <f:facet name="header">
+                            Edit the created data sets to see how chart handles the changes after form submitting
+                        </f:facet>
+
+                        <p:column headerText="Name">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{dataSet.name}" /></f:facet>
+                                <f:facet name="input"><p:inputText id="modelInput" value="#{dataSet.name}" style="width:100%"/></f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Color">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{dataSet.color}" /></f:facet>
+                                <f:facet name="input"><p:inputText value="#{dataSet.color}" style="width:100%" label="Year"/></f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Chart type">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{dataSet.type}" /></f:facet>
+                                <f:facet name="input">
+                                    <h:selectOneMenu value="#{dataSet.type}" style="width:100%">
+                                        <f:selectItem itemValue="line" itemLabel="Chart type - LINE" />
+                                        <f:selectItem itemValue="pie" itemLabel="Chart type - PIE" />
+                                        <f:selectItem itemValue="bar" itemLabel="Chart type - BAR" />
+                                        <f:selectItem itemValue="gauge" itemLabel="Chart type - GAUGE" />
+                                        <f:selectItem itemValue="area" itemLabel="Chart type - AREA" />
+                                        <f:selectItem itemValue="area-spline" itemLabel="Chart type - AREASPLINE" />
+                                        <f:selectItem itemValue="area-step" itemLabel="Chart type - AREASTEP" />
+                                        <f:selectItem itemValue="donut" itemLabel="Chart type - DONUT" />
+                                        <f:selectItem itemValue="scatter" itemLabel="Chart type - SCATTER" />
+                                        <f:selectItem itemValue="spline" itemLabel="Chart type - SPLINE" />
+                                        <f:selectItem itemValue="step" itemLabel="Chart type - STEP" />
+                                    </h:selectOneMenu>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Generate new data">
+                            <p:commandButton value="Generate new data" immediate="false" update="@this" >
+                                <p:ajax update="viewDataSetsTable" listener="#{editableComplexAnimationBean.generateDummyData(dataSet)}" />
+                            </p:commandButton>
+                        </p:column>
+
+                        <p:column style="width:32px">
+                            <p:rowEditor />
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+        </ui:define>
+        <ui:define name="faceletCode">
+            &lt;h:form&gt;
+                &lt;h:panelGroup layout="block" id="chartGrid" style="margin: 0 auto; margin-bottom: 15px;"&gt;
+                &lt;c3:areaSpline id="chart" data="#<span>{editableComplexAnimationBean.data}</span>"  &gt;
+                        &lt;c3:grids /&gt;
+                        &lt;c3:size /&gt;
+                    &lt;/c3:areaSpline&gt;
+                    &lt;p:commandButton value="Submit the form and see the animations!"  update="@parent" /&gt;
+                &lt;/h:panelGroup&gt;
+
+                &lt;p:panel header="Define data sets" style="margin-bottom:20px"&gt;
+                    &lt;h:panelGrid columns="2" cellpadding="5" id="add"&gt;
+                        &lt;h:outputLabel value="Name :" for="txt_title"&gt;&lt;/h:outputLabel&gt;
+                        &lt;p:inputText id="txt_title" value="#<span>{editableComplexAnimationBean.dataSetToAdd.name}</span>" required="true"/&gt;
+
+                        &lt;h:outputLabel value="Color : *" for="txt_author"&gt;&lt;/h:outputLabel&gt;
+                        &lt;p:inputText id="txt_author" value="#<span>{editableComplexAnimationBean.dataSetToAdd.color}</span>" required="true"/&gt;
+
+                        &lt;h:outputLabel for="chartTypeCombo" value="Chart type " /&gt;
+                        &lt;h:selectOneMenu id="chartTypeCombo" value="#<span>{editableComplexAnimationBean.dataSetToAdd.type}</span>"&gt;
+                            &lt;f:selectItem itemValue="line" itemLabel="Chart type - LINE" /&gt;
+                            &lt;f:selectItem itemValue="pie" itemLabel="Chart type - PIE" /&gt;
+                            &lt;f:selectItem itemValue="bar" itemLabel="Chart type - BAR" /&gt;
+                            &lt;f:selectItem itemValue="gauge" itemLabel="Chart type - GAUGE" /&gt;
+                            &lt;f:selectItem itemValue="area" itemLabel="Chart type - AREA" /&gt;
+                            &lt;f:selectItem itemValue="area-spline" itemLabel="Chart type - AREASPLINE" /&gt;
+                            &lt;f:selectItem itemValue="area-step" itemLabel="Chart type - AREASTEP" /&gt;
+                            &lt;f:selectItem itemValue="donut" itemLabel="Chart type - DONUT" /&gt;
+                            &lt;f:selectItem itemValue="scatter" itemLabel="Chart type - SCATTER" /&gt;
+                            &lt;f:selectItem itemValue="spline" itemLabel="Chart type - SPLINE" /&gt;
+                            &lt;f:selectItem itemValue="step" itemLabel="Chart type - STEP" /&gt;
+                        &lt;/h:selectOneMenu&gt;
+                        &lt;p:commandButton id="btn_reset" value="Reset" type="reset"/&gt;
+                        &lt;p:commandButton id="btn_add" value="Add (chart values will be randomly generated)" update="add viewDataSetsTable"
+                                         action="#<span>{editableComplexAnimationBean.reinit}</span>"
+                                         actionListener="#<span>{editableComplexAnimationBean.generateDummyData(editableComplexAnimationBean.dataSetToAdd)}</span>"&gt;
+                            &lt;p:collector value="#<span>{editableComplexAnimationBean.dataSetToAdd}</span>" addTo="#<span>{editableComplexAnimationBean.data.dataSets}</span>" unique="true"/&gt;
+                        &lt;/p:commandButton&gt;
+                    &lt;/h:panelGrid&gt;
+
+                    &lt;p:dataTable id="viewDataSetsTable" var="dataSet" value="#<span>{editableComplexAnimationBean.data.dataSets}</span>" editable="true" style="margin-bottom:20px"&gt;
+                        &lt;f:facet name="header"&gt;
+                            Edit the created data sets to see how chart handles the changes after form submitting
+                        &lt;/f:facet&gt;
+
+                        &lt;p:column headerText="Name"&gt;
+                            &lt;p:cellEditor&gt;
+                                &lt;f:facet name="output"&gt;&lt;h:outputText value="#<span>{dataSet.name}</span>" /&gt;&lt;/f:facet&gt;
+                                &lt;f:facet name="input"&gt;&lt;p:inputText id="modelInput" value="#<span>{dataSet.name}</span>" style="width:100%"/&gt;&lt;/f:facet&gt;
+                            &lt;/p:cellEditor&gt;
+                        &lt;/p:column&gt;
+
+                        &lt;p:column headerText="Color"&gt;
+                            &lt;p:cellEditor&gt;
+                                &lt;f:facet name="output"&gt;&lt;h:outputText value="#<span>{dataSet.color}</span>" /&gt;&lt;/f:facet&gt;
+                                &lt;f:facet name="input"&gt;&lt;p:inputText value="#<span>{dataSet.color}</span>" style="width:100%" label="Year"/&gt;&lt;/f:facet&gt;
+                            &lt;/p:cellEditor&gt;
+                        &lt;/p:column&gt;
+
+                        &lt;p:column headerText="Chart type"&gt;
+                            &lt;p:cellEditor&gt;
+                                &lt;f:facet name="output"&gt;&lt;h:outputText value="#<span>{dataSet.type}</span>" /&gt;&lt;/f:facet&gt;
+                                &lt;f:facet name="input"&gt;
+                                    &lt;h:selectOneMenu value="#<span>{dataSet.type}</span>" style="width:100%"&gt;
+                                        &lt;f:selectItem itemValue="line" itemLabel="Chart type - LINE" /&gt;
+                                        &lt;f:selectItem itemValue="pie" itemLabel="Chart type - PIE" /&gt;
+                                        &lt;f:selectItem itemValue="bar" itemLabel="Chart type - BAR" /&gt;
+                                        &lt;f:selectItem itemValue="gauge" itemLabel="Chart type - GAUGE" /&gt;
+                                        &lt;f:selectItem itemValue="area" itemLabel="Chart type - AREA" /&gt;
+                                        &lt;f:selectItem itemValue="area-spline" itemLabel="Chart type - AREASPLINE" /&gt;
+                                        &lt;f:selectItem itemValue="area-step" itemLabel="Chart type - AREASTEP" /&gt;
+                                        &lt;f:selectItem itemValue="donut" itemLabel="Chart type - DONUT" /&gt;
+                                        &lt;f:selectItem itemValue="scatter" itemLabel="Chart type - SCATTER" /&gt;
+                                        &lt;f:selectItem itemValue="spline" itemLabel="Chart type - SPLINE" /&gt;
+                                        &lt;f:selectItem itemValue="step" itemLabel="Chart type - STEP" /&gt;
+                                    &lt;/h:selectOneMenu&gt;
+                                &lt;/f:facet&gt;
+                            &lt;/p:cellEditor&gt;
+                        &lt;/p:column&gt;
+
+                        &lt;p:column headerText="Generate new data"&gt;
+                            &lt;p:commandButton value="Generate new data" immediate="false" update="@this" &gt;
+                                &lt;p:ajax update="viewDataSetsTable" listener="#<span>{editableComplexAnimationBean.generateDummyData(dataSet)}</span>" /&gt;
+                            &lt;/p:commandButton&gt;
+                        &lt;/p:column&gt;
+
+                        &lt;p:column style="width:32px"&gt;
+                            &lt;p:rowEditor /&gt;
+                        &lt;/p:column&gt;
+                    &lt;/p:dataTable&gt;
+                &lt;/p:panel&gt;
+            &lt;/h:form&gt;
+        </ui:define>
+        <ui:define name="javaCode">
+        @ManagedBean(name = "editableComplexAnimationBean")
+        @ViewScoped
+        public class EditableComplexAnimationBean implements Serializable {
+
+            private Data data = new Data();
+            private C3ViewDataSet dataSetToAdd = new C3ViewDataSet();
+
+            public Data getData() {
+                return data;
+            }
+
+            public void setData(Data data) {
+                this.data = data;
+            }
+
+            public C3ViewDataSet getDataSetToAdd() {
+                return dataSetToAdd;
+            }
+
+            public void setDataSetToAdd(C3ViewDataSet dataSetToAdd) {
+                this.dataSetToAdd = dataSetToAdd;
+            }
+
+            public void reinit() {
+                this.dataSetToAdd = new C3ViewDataSet();
+            }
+
+
+            public void generateDummyData(C3ViewDataSet dataSet) {
+                List&lt;Integer&gt; intLis = new ArrayList&lt;&gt;();
+                for (int i = 0; i &lt; 7; i++) {
+                    intLis.add(randomInteger(0, 500));
+                }
+                dataSet.setDataSet(new C3DataSet(intLis));
+            }
+
+            public static int randomInteger(int min, int max) {
+                Random rand = new Random();
+                return rand.nextInt((max - min) + 1) + min;
+            }
+        }
+        </ui:define>
+    </ui:composition>
+</html>

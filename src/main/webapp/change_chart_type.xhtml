@@ -15,29 +15,67 @@
 
                 <h:outputLabel for="chartTypeCombo" value="Chart type " />
                 <h:selectOneMenu id="chartTypeCombo" value="#{changeChartTypeBean.data.chartType}">
-                    <f:selectItem itemValue="LINE" itemLabel="Chart type - LINE" />
-                    <f:selectItem itemValue="PIE" itemLabel="Chart type - PIE" />
-                    <f:selectItem itemValue="BAR" itemLabel="Chart type - BAR" />
-                    <f:selectItem itemValue="GAUGE" itemLabel="Chart type - GAUGE" />
-                    <f:selectItem itemValue="AREA" itemLabel="Chart type - AREA" />
-                    <f:selectItem itemValue="AREASPLINE" itemLabel="Chart type - AREASPLINE" />
-                    <f:selectItem itemValue="AREASTEP" itemLabel="Chart type - AREASTEP" />
-                    <f:selectItem itemValue="DONUT" itemLabel="Chart type - DONUT" />
-                    <f:selectItem itemValue="SCATTER" itemLabel="Chart type - SCATTER" />
-                    <f:selectItem itemValue="SPLINE" itemLabel="Chart type - SPLINE" />
-                    <f:selectItem itemValue="STEP" itemLabel="Chart type - STEP" />
+                    <f:selectItem itemValue="line" itemLabel="Chart type - LINE" />
+                    <f:selectItem itemValue="pie" itemLabel="Chart type - PIE" />
+                    <f:selectItem itemValue="bar" itemLabel="Chart type - BAR" />
+                    <f:selectItem itemValue="gauge" itemLabel="Chart type - GAUGE" />
+                    <f:selectItem itemValue="area" itemLabel="Chart type - AREA" />
+                    <f:selectItem itemValue="area-spline" itemLabel="Chart type - AREASPLINE" />
+                    <f:selectItem itemValue="area-step" itemLabel="Chart type - AREASTEP" />
+                    <f:selectItem itemValue="donut" itemLabel="Chart type - DONUT" />
+                    <f:selectItem itemValue="scatter" itemLabel="Chart type - SCATTER" />
+                    <f:selectItem itemValue="spline" itemLabel="Chart type - SPLINE" />
+                    <f:selectItem itemValue="step" itemLabel="Chart type - STEP" />
 
                     <f:ajax render="chart" execute="chart" />
                 </h:selectOneMenu>
-
-
             </h:form>
         </ui:define>
         <ui:define name="faceletCode">
+            &lt;h:form&gt;
+            &lt;c3:bar id="chart" data="#<span>{changeChartTypeBean.data}</span>" /&gt;
 
+                &lt;h:outputLabel for="chartTypeCombo" value="Chart type " /&gt;
+                &lt;h:selectOneMenu id="chartTypeCombo" value="#{changeChartTypeBean.data.chartType}"&gt;
+                    &lt;f:selectItem itemValue="line" itemLabel="Chart type - LINE" /&gt;
+                    &lt;f:selectItem itemValue="pie" itemLabel="Chart type - PIE" /&gt;
+                    &lt;f:selectItem itemValue="bar" itemLabel="Chart type - BAR" /&gt;
+                    &lt;f:selectItem itemValue="gauge" itemLabel="Chart type - GAUGE" /&gt;
+                    &lt;f:selectItem itemValue="area" itemLabel="Chart type - AREA" /&gt;
+                    &lt;f:selectItem itemValue="area-spline" itemLabel="Chart type - AREASPLINE" /&gt;
+                    &lt;f:selectItem itemValue="area-step" itemLabel="Chart type - AREASTEP" /&gt;
+                    &lt;f:selectItem itemValue="donut" itemLabel="Chart type - DONUT" /&gt;
+                    &lt;f:selectItem itemValue="scatter" itemLabel="Chart type - SCATTER" /&gt;
+                    &lt;f:selectItem itemValue="spline" itemLabel="Chart type - SPLINE" /&gt;
+                    &lt;f:selectItem itemValue="step" itemLabel="Chart type - STEP" /&gt;
+
+                    &lt;f:ajax render="chart" execute="chart" /&gt;
+                &lt;/h:selectOneMenu&gt;
+            &lt;/h:form&gt;
         </ui:define>
         <ui:define name="javaCode">
+        @ManagedBean(name = "changeChartTypeBean")
+        @ViewScoped
+        public class ChangeChartTypeBean implements Serializable {
 
+            private final Data data = new Data();
+
+            @PostConstruct
+            public void init() {
+                data.getDataSets().add(new C3ViewDataSet("Data sample 1",
+                        new C3DataSet(Arrays.asList(22, 91, 158, 93, 201, 11)), "#DE1820"));
+                data.getDataSets().add(new C3ViewDataSet("Data sample 2",
+                        new C3DataSet(Arrays.asList(1, 72, 23, 33, 21)), "#96171B"));
+                data.getDataSets().add(new C3ViewDataSet("Data sample 3",
+                        new C3DataSet(Arrays.asList(45, 231, 2, 151, 341, 254)), "#EB7F83"));
+                data.getDataSets().add(new C3ViewDataSet("Data sample 4",
+                        new C3DataSet(Arrays.asList(88, 13, 258, 211, 151)), "#BF888A"));
+            }
+
+            public Data getData() {
+                return data;
+            }
+        }
         </ui:define>
     </ui:composition>
 </html>

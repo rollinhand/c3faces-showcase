@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c3="http://c3faces.martinlinha.com/ns"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="main-template.xhtml" >
+        <ui:define name="pageName">Bulk server side changes</ui:define>
+        <ui:define name="chart">
+            <h:form>
+                <h:panelGrid columns="5">
+                    <h:commandButton value="Non-ajax request" />
+
+                    <h:commandButton value="Hide chart" action="#{sandboxBean.setRendered(false)}">
+                        <f:ajax execute="@form" render="@form" /> 
+                    </h:commandButton>         
+                    <h:commandButton value="Show chart" action="#{sandboxBean.setRendered(true)}">
+                        <f:ajax execute="@form" render="@form" /> 
+                    </h:commandButton>
+
+                    <h:commandButton value="Change chart's values" action="#{sandboxBean.resizeTest()}" rendered="#{sandboxBean.counter lt 6}">
+                        <f:ajax execute="@form" render="@form" /> 
+                    </h:commandButton>
+                </h:panelGrid>
+
+                <p:panel header="chart" >
+                    <c3:spline id="pie" data="#{sandboxBean.data}" binding="#{sandboxBean.chart}" rendered="#{sandboxBean.rendered}" >
+                        <c3:size height="300" width="300" />
+                        <c3:grids>
+                            <c3:gridX text="test" value="1" />
+                        </c3:grids>
+                        <c3:legend show="fase" />
+                        <f:ajax execute="@this" render="@this" event="click"  />
+                    </c3:spline>
+                </p:panel>
+            </h:form>
+        </ui:define>
+        <ui:define name="faceletCode">
+            &lt;h:form&gt;
+            &lt;h:panelGrid columns="5"&gt;
+            &lt;h:commandButton value="Non-ajax request" /&gt;
+
+            &lt;h:commandButton value="Hide chart" action="#<span>{sandboxBean.setRendered(false)}</span>"&gt;
+            &lt;f:ajax execute="@form" render="@form" /&gt; 
+            &lt;/h:commandButton&gt;         
+            &lt;h:commandButton value="Show chart" action="#<span>{sandboxBean.setRendered(true)}</span>"&gt;
+            &lt;f:ajax execute="@form" render="@form" /&gt; 
+            &lt;/h:commandButton&gt;
+
+            &lt;h:commandButton value="Change chart's values" action="#<span>{sandboxBean.resizeTest()}</span>" rendered="<span>#{sandboxBean.counter lt 6}</span>"&gt;
+            &lt;f:ajax execute="@form" render="@form" /&gt; 
+            &lt;/h:commandButton&gt;
+            &lt;/h:panelGrid&gt;
+
+            &lt;p:panel header="chart" &gt;
+            &lt;c3:spline id="pie" data="#<span>{sandboxBean.data}</span>" binding="<span>#{sandboxBean.chart}</span>" rendered="<span>#{sandboxBean.rendered}</span>" &gt;
+            &lt;c3:size height="300" width="300" /&gt;
+            &lt;c3:grids&gt;
+            &lt;c3:gridX text="test" value="1" /&gt;
+            &lt;/c3:grids&gt;
+            &lt;c3:legend show="fase" /&gt;
+            &lt;f:ajax execute="@this" render="@this" event="click"  /&gt;
+            &lt;/c3:spline&gt;
+            &lt;/p:panel&gt;
+            &lt;/h:form&gt;
+        </ui:define>
+
+        <ui:define name="javaCode">
+            @ManagedBean(name = "sandboxBean")
+            @ViewScoped
+            public class SandboxBean implements Serializable {
+
+            private LinkedHashSet&lt;C3ViewDataSet&gt; newDataSet = null;
+            private Data data = new Data();
+            private C3Chart chart;
+            private int counter = 1;
+            private final C3ViewDataSet c3ViewDataSet1 = new C3ViewDataSet("New data set 1", new C3DataSet(Arrays.asList(50, 50, 50, 50, 50)), "#16525E");
+            private final C3ViewDataSet c3ViewDataSet2 = new C3ViewDataSet("New data set 2", new C3DataSet(Arrays.asList(150, 250, 350, 50, 50)), "#16525E");
+            private boolean rendered = true;
+
+            @PostConstruct
+            public void init() {
+            data.getDataSets().add(new C3ViewDataSet("Data sample 1",
+            new C3DataSet(Arrays.asList(22, 91, 158, 93, 201, 11)), "#1060E0"));
+            data.getDataSets().add(new C3ViewDataSet("Data sample 2",
+            new C3DataSet(Arrays.asList(1, 72, 23, 33, 21)), "#16525E"));
+            data.getDataSets().add(new C3ViewDataSet("Data sample 3",
+            new C3DataSet(Arrays.asList(45, 231, 2, 151, 341, 254)), "#0792AD"));
+            data.getDataSets().add(new C3ViewDataSet("Data sample 4",
+            new C3DataSet(Arrays.asList(88, 13, 258, 211, 151)), "#8FE2F2"));
+            }
+
+            public void resizeTest() {
+            Legend legend = (Legend) chart.getComponentProperties().getProperty(Legend.NAME);
+            GridProperties grids = (GridProperties) chart.getComponentProperties().getProperty(GridProperties.NAME);
+
+            switch (counter) {
+            case 1:
+            grids.removeXGrids();
+            Size size = (Size) chart.getComponentProperties().getProperty(Size.NAME);
+
+            // see how chart handles multiple changes on same property
+            size.setHeight(80);
+            size.setHeight(120);
+            size.setHeight(150);
+            size.setHeight(220);
+            size.setWidth(550);
+            size.setWidth(730);
+
+            data.getDataSets().add(c3ViewDataSet2);
+            data.getDataSets().add(c3ViewDataSet1);
+
+            data.setChartType(ChartType.BAR.getName());
+
+            c3ViewDataSet1.setType(ChartType.BAR.getName());
+            c3ViewDataSet2.setType(ChartType.SPLINE.getName());
+
+            counter++;
+            break;
+            case 2:
+            grids.addYGrid(40d, "Test 1");
+            grids.addYGrid(300d, "Test 2");
+
+            c3ViewDataSet1.setName("Newly set name");
+            c3ViewDataSet2.setName("Newly set name 2");
+            legend.setShow(true);
+
+            counter++;
+            break;
+            case 3:
+            grids.removeYGrids();
+            c3ViewDataSet2.setName("Another new name.");
+            data.getDataSets().remove(c3ViewDataSet1);
+
+            counter++;
+            break;
+            case 4: {
+            newDataSet = new LinkedHashSet&lt;&gt;();
+            newDataSet.add(new C3ViewDataSet("Newly added set 1 (catched by observable set)",
+            new C3DataSet(Arrays.asList(88, 13, 2, 2, 151)), "#333333"));
+            newDataSet.add(new C3ViewDataSet("Newly added set 2 (catched by observable set)",
+            new C3DataSet(Arrays.asList(5, 13, 100, 211, 6)), "#FF9900"));
+            newDataSet.add(new C3ViewDataSet("Newly added set 3 (catched by observable set)",
+            new C3DataSet(Arrays.asList(90.4, 24, 100, 21, 1000)), "#666666"));
+            newDataSet.add(new C3ViewDataSet("Newly set 4 (catched by observable set)",
+            new C3DataSet(Arrays.asList(33.4949, 134, 100, 411, 6)), "#FFCC11"));
+
+            data.setDataSets(newDataSet);
+
+            counter++;
+            break;
+            }
+            case 5:
+            int c = 20;
+            boolean foo = false;
+            for (C3ViewDataSet dataSet : newDataSet) {
+            dataSet.setDataSet(foo ? null : new C3DataSet(Arrays.asList(c, c, c)));
+            foo = true;
+            c += 400;
+            }
+
+            counter++;
+            break;
+            }
+            }
+
+            public Data getData() {
+            return data;
+            }
+
+            public void setData(Data data) {
+            this.data = data;
+            }
+
+            public C3Chart getChart() {
+            return chart;
+            }
+
+            public void setChart(C3Chart chart) {
+            this.chart = chart;
+            }
+
+            public boolean isRendered() {
+            return rendered;
+            }
+
+            public void setRendered(boolean rendered) {
+            this.rendered = rendered;
+            }
+
+            public int getCounter() {
+            return counter;
+            }            
+        </ui:define>
+    </ui:composition>
+</html>

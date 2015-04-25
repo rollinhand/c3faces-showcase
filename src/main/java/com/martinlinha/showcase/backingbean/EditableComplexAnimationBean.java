@@ -43,7 +43,7 @@ public class EditableComplexAnimationBean implements Serializable {
     
 
     public void generateDummyData(C3ViewDataSet dataSet) {
-        List<Integer> intLis = new ArrayList<Integer>();
+        List<Integer> intLis = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             intLis.add(randomInteger(0, 500));
         }

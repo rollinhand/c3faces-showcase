@@ -28,11 +28,11 @@ public class PrimefacesIntegrationBean {
     private final C3ViewDataSet dataSet1 = new C3ViewDataSet("Data sample 1",
             new C3DataSet(Arrays.asList(22, 91, 158, 93, 201, 11)), "#D7F707");
     private final C3ViewDataSet dataSet2 = new C3ViewDataSet("Data sample 2",
-            new C3DataSet(Arrays.asList(1, 72, 23, 33, 21)), "#CCCCCC");
+            new C3DataSet(Arrays.asList(490, 21, 455, 33, 21)), "#CCCCCC");
     private final C3ViewDataSet dataSet3 = new C3ViewDataSet("Data sample 3",
-            new C3DataSet(Arrays.asList(45, 231, 2, 151, 341, 254)), "#EEFFEE");
+            new C3DataSet(Arrays.asList(69, 231, 2, 151, 341, 254)), "red");
     private final C3ViewDataSet dataSet4 = new C3ViewDataSet("Data sample 4",
-            new C3DataSet(Arrays.asList(88, 13, 258, 211, 151)), "#EAFA7F");
+            new C3DataSet(Arrays.asList(132, 388, 258, 211, 151)), "#EAFA7F");
 
     @PostConstruct
     public void init() {
