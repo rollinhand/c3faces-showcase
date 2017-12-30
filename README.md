@@ -23,38 +23,51 @@ This showcase uses TomEE 7.0.4 as application server. The whole showcase is also
 ### Starting a local server
 The showcase can be executed on every local machine which has Java 8 installed. Just call the following Maven command:
 
-`mvn clean package tomee:run`
+```
+mvn clean package tomee:run
+```
 
-and open a browser calling the URL:
-
-`http://localhost:8080/`
+and open a browser calling the URL: `http://localhost:8080/`
 
 ### Build and deploy docker image
 The POM also includes the great Docker Maven plugin by fabric8.
 The image can be build by running the following Maven command:
 
-`mvn clean package docker:build`
+```
+mvn clean package docker:build
+```
 
 or if you want to execute the image in your local docker instance, execute the following Maven command:
 
-`mvn clean package docker:build docker:run`
+```
+mvn clean package docker:build docker:run
+```
 
 If you have a remote machine running a docker host, deploy the image to your machine and import it with the following
 command:
 
-`docker import docker-build.tar.gz`
+```
+docker import docker-build.tar.gz
+```
 
 The image is available as **c3faces-showcase** or with its alias **showcase**.
 
 A container based on that image can be started as follows:
 
-`docker run -d -p 8080:8080 showcase`
+```
+docker run -d -p 8080:8080 showcase
+```
 
 Or if you want to use a different port, because 8080 is reserved by a different instance,
 execute the following command:
 
-`docker run -d -p 8081:8080 showcase`
+```
+docker run -d -p 8081:8080 showcase
+```
 
 In case of error a container can be automatically restarted:
 
-`docker run -d -p 8081:8080 --restart unless-stopped showcase`
+```
+docker run -d -p 8081:8080 --restart unless-stopped showcase
+```
+
