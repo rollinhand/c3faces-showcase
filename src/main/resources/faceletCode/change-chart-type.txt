@@ -1,0 +1,20 @@
+<h:form>
+    <c3:bar id="chart" data="#{changeChartTypeBean.data}" />
+
+    <h:outputLabel for="chartTypeCombo" value="Chart type " />
+    <h:selectOneMenu id="chartTypeCombo" value="#{changeChartTypeBean.data.chartType}">
+        <f:selectItem itemValue="line" itemLabel="Chart type - LINE" />
+        <f:selectItem itemValue="pie" itemLabel="Chart type - PIE" />
+        <f:selectItem itemValue="bar" itemLabel="Chart type - BAR" />
+        <f:selectItem itemValue="gauge" itemLabel="Chart type - GAUGE" />
+        <f:selectItem itemValue="area" itemLabel="Chart type - AREA" />
+        <f:selectItem itemValue="area-spline" itemLabel="Chart type - AREASPLINE" />
+        <f:selectItem itemValue="area-step" itemLabel="Chart type - AREASTEP" />
+        <f:selectItem itemValue="donut" itemLabel="Chart type - DONUT" />
+        <f:selectItem itemValue="scatter" itemLabel="Chart type - SCATTER" />
+        <f:selectItem itemValue="spline" itemLabel="Chart type - SPLINE" />
+        <f:selectItem itemValue="step" itemLabel="Chart type - STEP" />
+
+        <f:ajax render="chart" execute="chart" />
+    </h:selectOneMenu>
+</h:form>

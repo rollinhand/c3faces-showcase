@@ -4,10 +4,11 @@
       xmlns:c3="http://c3faces.martinlinha.com/ns"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-
-    <ui:composition template="main-template.xhtml" >
-        <ui:define name="pageName">Chart properties defined in Facelet</ui:define>
-        <ui:define name="chart">
+    <ui:composition template="c3facesTemplate.xhtml">
+        <ui:define name="description">
+            <h1>Chart properties defined in Facelet</h1>
+        </ui:define>
+        <ui:define name="facelet-code">
             <h:form>
                 <c3:line id="chart" data="#{chartPropertiesFaceletBean.data}" >
                     <c3:grids>
@@ -24,48 +25,6 @@
                     <c3:padding left="100" />
                 </c3:line>
             </h:form>
-        </ui:define>
-        <ui:define name="faceletCode">
-            &lt;h:form&gt;
-            &lt;c3:line id="chart" data="#<span>{chartPropertiesFaceletBean.data}</span>" &gt;
-                    &lt;c3:grids&gt;
-                        &lt;c3:gridX text="X Grid - 1" value="1" /&gt;
-                        &lt;c3:gridX text="X Grid - 2" value="2.5" /&gt;
-                        &lt;c3:gridY text="Y Grid - 1" value="187" /&gt;
-                    &lt;/c3:grids&gt;
-                    &lt;c3:regions&gt;
-                        &lt;c3:region axis="x" start="1" end="2" /&gt;
-                    &lt;/c3:regions&gt;
-                    &lt;c3:point expandR="7" r="5" selectR="10" /&gt;
-                    &lt;c3:legend position="INSET" insetAnchor="TOPLEFT" insetStep="1" /&gt;
-                    &lt;c3:subchart show="true" height="40" /&gt;
-                    &lt;c3:padding left="100" /&gt;
-                &lt;/c3:line&gt;
-            &lt;/h:form&gt;
-        </ui:define>
-        <ui:define name="javaCode">
-        @ManagedBean(name = "chartPropertiesFaceletBean")
-        @ViewScoped
-        public class ChartPropertiesFaceletBean implements Serializable {
-
-            private final Data data = new Data();
-
-            @PostConstruct
-            public void init() {
-                data.getDataSets().add(new C3ViewDataSet("Data sample 1",
-                        new C3DataSet(Arrays.asList(22.2, 91, 158, 93.33, 201, 11)), "#0F9413"));
-                data.getDataSets().add(new C3ViewDataSet("Data sample 2",
-                        new C3DataSet(Arrays.asList(1, 72, 23, 33, 21)), "#558A57"));
-                data.getDataSets().add(new C3ViewDataSet("Data sample 3",
-                        new C3DataSet(Arrays.asList(45, 231, 2.232, 151, 341, 254)), "#A4DEA6"));
-                data.getDataSets().add(new C3ViewDataSet("Data sample 4",
-                        new C3DataSet(Arrays.asList(88, 13, 258.1, 211, 151)), "#07F70F"));
-            }
-
-            public Data getData() {
-                return data;
-            }
-        }            
         </ui:define>
     </ui:composition>
 </html>

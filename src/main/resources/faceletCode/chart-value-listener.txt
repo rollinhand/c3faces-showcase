@@ -1,0 +1,7 @@
+<h:form>
+    <c3:areaSpline id="chart" data="#{chartValueChangeListenerBean.data}">
+        <f:valueChangeListener type="org.kivio.showcase.listener.DataChangeValueListener" />
+        <f:ajax render="@form" execute="@form"  />
+    </c3:areaSpline>
+    <h:message id="chartMessage" for="chart" />
+</h:form>

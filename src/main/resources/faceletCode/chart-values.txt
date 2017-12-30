@@ -1,0 +1,122 @@
+<h:form>
+    <c3:spline id="chart" data="#{chartValuesBean.data}"/>
+    <h:panelGrid columns="4">
+        <h:panelGroup id="data1group" layout="block">
+            <h2>Data 1 data set</h2>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="data1name" value="Name:" />
+                <h:inputText id="data1name" value="#{chartValuesBean.data1.name}" size="15"  >
+                    <f:ajax render="chart" execute="chart" />
+                </h:inputText>
+
+                <h:outputLabel for="data1type" value="Type:" />
+                <h:selectOneMenu id="data1type" value="#{chartValuesBean.data1.type}" >
+                    <f:selectItem itemValue="line" itemLabel="LINE" />
+                    <f:selectItem itemValue="bar" itemLabel="BAR" />
+                    <f:selectItem itemValue="area" itemLabel="AREA" />
+                    <f:selectItem itemValue="area-spline" itemLabel="AREASPLINE" />
+                    <f:selectItem itemValue="area-step" itemLabel="AREASTEP" />
+                    <f:selectItem itemValue="scatter" itemLabel="SCATTER" />
+                    <f:selectItem itemValue="spline" itemLabel="SPLINE" />
+                    <f:selectItem itemValue="step" itemLabel="STEP" />
+
+                    <f:ajax render="chart" execute="chart" />
+                </h:selectOneMenu>
+
+                <h:outputLabel for="data1color" value="Color:" />
+                <h:inputText id="data1color" value="#{chartValuesBean.data1.color}" size="15"  >
+                    <f:ajax render="chart" execute="chart" />
+                </h:inputText>
+            </h:panelGrid>
+        </h:panelGroup>
+
+
+        <h:panelGroup id="data2group" layout="block">
+            <h2>Data 2 data set</h2>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="data2name" value="Name:" />
+                <h:inputText id="data2name" value="#{chartValuesBean.data2.name}" size="15"  >
+                    <f:ajax render="chart" execute="chart" />
+                </h:inputText>
+
+                <h:outputLabel for="data2type" value="Type:" />
+                <h:selectOneMenu id="data2type" value="#{chartValuesBean.data2.type}" >
+                    <f:selectItem itemValue="line" itemLabel="LINE" />
+                    <f:selectItem itemValue="bar" itemLabel="BAR" />
+                    <f:selectItem itemValue="area" itemLabel="AREA" />
+                    <f:selectItem itemValue="area-spline" itemLabel="AREASPLINE" />
+                    <f:selectItem itemValue="area-step" itemLabel="AREASTEP" />
+                    <f:selectItem itemValue="scatter" itemLabel="SCATTER" />
+                    <f:selectItem itemValue="spline" itemLabel="SPLINE" />
+                    <f:selectItem itemValue="step" itemLabel="STEP" />
+
+                    <f:ajax render="chart" execute="chart" />
+                </h:selectOneMenu>
+
+                <h:outputLabel for="data2color" value="Color:" />
+                <h:inputText id="data2color" value="#{chartValuesBean.data2.color}" size="15"  >
+                    <f:ajax render="chart" execute="chart" />
+                </h:inputText>
+            </h:panelGrid>
+        </h:panelGroup>
+
+
+        <h:panelGroup id="data3group" layout="block">
+            <h2>Data 3 data set</h2>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="data3name" value="Name:" />
+                <h:inputText id="data3name" value="#{chartValuesBean.data3.name}" size="15"  >
+                    <f:ajax render="chart" execute="chart" />
+                </h:inputText>
+
+                <h:outputLabel for="data3type" value="Type:" />
+                <h:selectOneMenu id="data3type" value="#{chartValuesBean.data3.type}" >
+                    <f:selectItem itemValue="line" itemLabel="LINE" />
+                    <f:selectItem itemValue="bar" itemLabel="BAR" />
+                    <f:selectItem itemValue="area" itemLabel="AREA" />
+                    <f:selectItem itemValue="area-spline" itemLabel="AREASPLINE" />
+                    <f:selectItem itemValue="area-step" itemLabel="AREASTEP" />
+                    <f:selectItem itemValue="scatter" itemLabel="SCATTER" />
+                    <f:selectItem itemValue="spline" itemLabel="SPLINE" />
+                    <f:selectItem itemValue="step" itemLabel="STEP" />
+
+                    <f:ajax render="chart" execute="chart" />
+                </h:selectOneMenu>
+
+                <h:outputLabel for="data3color" value="Color:" />
+                <h:inputText id="data3color" value="#{chartValuesBean.data3.color}" size="15"  >
+                    <f:ajax render="chart" execute="chart" />
+                </h:inputText>
+            </h:panelGrid>
+        </h:panelGroup>
+
+        <h:panelGroup id="data4group" layout="block">
+            <h2>Data 4 data set</h2>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="data4name" value="Name:" />
+                <h:inputText id="data4name" value="#{chartValuesBean.data4.name}" size="15"  >
+                    <f:ajax render="chart" execute="chart" />
+                </h:inputText>
+
+                <h:outputLabel for="data4type" value="Type:" />
+                <h:selectOneMenu id="data4type" value="#{chartValuesBean.data4.type}" >
+                    <f:selectItem itemValue="line" itemLabel="LINE" />
+                    <f:selectItem itemValue="bar" itemLabel="BAR" />
+                    <f:selectItem itemValue="area" itemLabel="AREA" />
+                    <f:selectItem itemValue="area-spline" itemLabel="AREASPLINE" />
+                    <f:selectItem itemValue="area-step" itemLabel="AREASTEP" />
+                    <f:selectItem itemValue="scatter" itemLabel="SCATTER" />
+                    <f:selectItem itemValue="spline" itemLabel="SPLINE" />
+                    <f:selectItem itemValue="step" itemLabel="STEP" />
+
+                    <f:ajax render="chart" execute="chart" />
+                </h:selectOneMenu>
+
+                <h:outputLabel for="data4color" value="Color:" />
+                <h:inputText id="data4color" value="#{chartValuesBean.data4.color}" size="15"  >
+                    <f:ajax render="chart" execute="chart" />
+                </h:inputText>
+            </h:panelGrid>
+        </h:panelGroup>
+    </h:panelGrid>
+</h:form>

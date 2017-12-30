@@ -1,0 +1,4 @@
+Label,Outcome,FaceletCode,JavaCode
+"Examples",,,
+"Changing chart's data","bulk_changes","bulk_changes.xhtml","ChangeChartTypeBean.java"
+"Chart properties defined in Facelet","change_chart_type","chart_changes.xhtml","ChartTypesBean.java"

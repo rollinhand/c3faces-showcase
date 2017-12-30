@@ -5,16 +5,17 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <ui:composition template="main-template.xhtml" >
-        <ui:define name="pageName">Changing chart's data</ui:define>
-        <ui:define name="chart">
+    <ui:composition template="c3facesTemplate.xhtml">
+        <ui:define name="description">
+            <h1>Changing chart's data</h1>
+        </ui:define>
+        <ui:define name="facelet-code">
             <h:form>
                 <c3:spline id="chart" data="#{chartValuesBean.data}"/>
                 <h:panelGrid columns="4">
                     <h:panelGroup id="data1group" layout="block">
                         <h2>Data 1 data set</h2>
-                        <h:panelGrid columns="2">                       
+                        <h:panelGrid columns="2">
                             <h:outputLabel for="data1name" value="Name:" />
                             <h:inputText id="data1name" value="#{chartValuesBean.data1.name}" size="15"  >
                                 <f:ajax render="chart" execute="chart" />
@@ -44,7 +45,7 @@
 
                     <h:panelGroup id="data2group" layout="block">
                         <h2>Data 2 data set</h2>
-                        <h:panelGrid columns="2">                       
+                        <h:panelGrid columns="2">
                             <h:outputLabel for="data2name" value="Name:" />
                             <h:inputText id="data2name" value="#{chartValuesBean.data2.name}" size="15"  >
                                 <f:ajax render="chart" execute="chart" />
@@ -74,7 +75,7 @@
 
                     <h:panelGroup id="data3group" layout="block">
                         <h2>Data 3 data set</h2>
-                        <h:panelGrid columns="2">                       
+                        <h:panelGrid columns="2">
                             <h:outputLabel for="data3name" value="Name:" />
                             <h:inputText id="data3name" value="#{chartValuesBean.data3.name}" size="15"  >
                                 <f:ajax render="chart" execute="chart" />
@@ -103,7 +104,7 @@
 
                     <h:panelGroup id="data4group" layout="block">
                         <h2>Data 4 data set</h2>
-                        <h:panelGrid columns="2">                       
+                        <h:panelGrid columns="2">
                             <h:outputLabel for="data4name" value="Name:" />
                             <h:inputText id="data4name" value="#{chartValuesBean.data4.name}" size="15"  >
                                 <f:ajax render="chart" execute="chart" />
@@ -131,190 +132,6 @@
                     </h:panelGroup>
                 </h:panelGrid>
             </h:form>
-        </ui:define>
-        <ui:define name="faceletCode">
-            &lt;h:form&gt;
-            &lt;c3:spline id="chart" data="#<span>{chartValuesBean.data}</span>"/&gt;
-                &lt;h:panelGrid columns="4"&gt;
-                    &lt;h:panelGroup id="data1group" layout="block"&gt;
-                        &lt;h2&gt;Data 1 data set&lt;/h2&gt;
-                        &lt;h:panelGrid columns="2"&gt;                       
-                            &lt;h:outputLabel for="data1name" value="Name:" /&gt;
-                            &lt;h:inputText id="data1name" value="#<span>{chartValuesBean.data1.name}</span>" size="15"  &gt;
-                                &lt;f:ajax render="chart" execute="chart" /&gt;
-                            &lt;/h:inputText&gt;
-
-                            &lt;h:outputLabel for="data1type" value="Type:" /&gt;
-                            &lt;h:selectOneMenu id="data1type" value="#<span>{chartValuesBean.data1.type}</span>" &gt;
-                                &lt;f:selectItem itemValue="line" itemLabel="LINE" /&gt;
-                                &lt;f:selectItem itemValue="bar" itemLabel="BAR" /&gt;
-                                &lt;f:selectItem itemValue="area" itemLabel="AREA" /&gt;
-                                &lt;f:selectItem itemValue="area-spline" itemLabel="AREASPLINE" /&gt;
-                                &lt;f:selectItem itemValue="area-step" itemLabel="AREASTEP" /&gt;
-                                &lt;f:selectItem itemValue="scatter" itemLabel="SCATTER" /&gt;
-                                &lt;f:selectItem itemValue="spline" itemLabel="SPLINE" /&gt;
-                                &lt;f:selectItem itemValue="step" itemLabel="STEP" /&gt;
-
-                                &lt;f:ajax render="chart" execute="chart" /&gt;
-                            &lt;/h:selectOneMenu&gt;
-
-                            &lt;h:outputLabel for="data1color" value="Color:" /&gt;
-                            &lt;h:inputText id="data1color" value="#<span>{chartValuesBean.data1.color}</span>" size="15"  &gt;
-                                &lt;f:ajax render="chart" execute="chart" /&gt;
-                            &lt;/h:inputText&gt;
-                        &lt;/h:panelGrid&gt;
-                    &lt;/h:panelGroup&gt;
-
-
-                    &lt;h:panelGroup id="data2group" layout="block"&gt;
-                        &lt;h2&gt;Data 2 data set&lt;/h2&gt;
-                        &lt;h:panelGrid columns="2"&gt;                       
-                            &lt;h:outputLabel for="data2name" value="Name:" /&gt;
-                            &lt;h:inputText id="data2name" value="#<span>{chartValuesBean.data2.name}</span>" size="15"  &gt;
-                                &lt;f:ajax render="chart" execute="chart" /&gt;
-                            &lt;/h:inputText&gt;
-
-                            &lt;h:outputLabel for="data2type" value="Type:" /&gt;
-                            &lt;h:selectOneMenu id="data2type" value="#<span>{chartValuesBean.data2.type}</span>" &gt;
-                                &lt;f:selectItem itemValue="line" itemLabel="LINE" /&gt;
-                                &lt;f:selectItem itemValue="bar" itemLabel="BAR" /&gt;
-                                &lt;f:selectItem itemValue="area" itemLabel="AREA" /&gt;
-                                &lt;f:selectItem itemValue="area-spline" itemLabel="AREASPLINE" /&gt;
-                                &lt;f:selectItem itemValue="area-step" itemLabel="AREASTEP" /&gt;
-                                &lt;f:selectItem itemValue="scatter" itemLabel="SCATTER" /&gt;
-                                &lt;f:selectItem itemValue="spline" itemLabel="SPLINE" /&gt;
-                                &lt;f:selectItem itemValue="step" itemLabel="STEP" /&gt;
-
-                                &lt;f:ajax render="chart" execute="chart" /&gt;
-                            &lt;/h:selectOneMenu&gt;
-
-                            &lt;h:outputLabel for="data2color" value="Color:" /&gt;
-                            &lt;h:inputText id="data2color" value="#<span>{chartValuesBean.data2.color}</span>" size="15"  &gt;
-                                &lt;f:ajax render="chart" execute="chart" /&gt;
-                            &lt;/h:inputText&gt;
-                        &lt;/h:panelGrid&gt;
-                    &lt;/h:panelGroup&gt;
-
-
-                    &lt;h:panelGroup id="data3group" layout="block"&gt;
-                        &lt;h2&gt;Data 3 data set&lt;/h2&gt;
-                        &lt;h:panelGrid columns="2"&gt;                       
-                            &lt;h:outputLabel for="data3name" value="Name:" /&gt;
-                            &lt;h:inputText id="data3name" value="#<span>{chartValuesBean.data3.name}</span>" size="15"  &gt;
-                                &lt;f:ajax render="chart" execute="chart" /&gt;
-                            &lt;/h:inputText&gt;
-
-                            &lt;h:outputLabel for="data3type" value="Type:" /&gt;
-                            &lt;h:selectOneMenu id="data3type" value="#<span>{chartValuesBean.data3.type}</span>" &gt;
-                                &lt;f:selectItem itemValue="line" itemLabel="LINE" /&gt;
-                                &lt;f:selectItem itemValue="bar" itemLabel="BAR" /&gt;
-                                &lt;f:selectItem itemValue="area" itemLabel="AREA" /&gt;
-                                &lt;f:selectItem itemValue="area-spline" itemLabel="AREASPLINE" /&gt;
-                                &lt;f:selectItem itemValue="area-step" itemLabel="AREASTEP" /&gt;
-                                &lt;f:selectItem itemValue="scatter" itemLabel="SCATTER" /&gt;
-                                &lt;f:selectItem itemValue="spline" itemLabel="SPLINE" /&gt;
-                                &lt;f:selectItem itemValue="step" itemLabel="STEP" /&gt;
-
-                                &lt;f:ajax render="chart" execute="chart" /&gt;
-                            &lt;/h:selectOneMenu&gt;
-
-                            &lt;h:outputLabel for="data3color" value="Color:" /&gt;
-                            &lt;h:inputText id="data3color" value="#<span>{chartValuesBean.data3.color}</span>" size="15"  &gt;
-                                &lt;f:ajax render="chart" execute="chart" /&gt;
-                            &lt;/h:inputText&gt;
-                        &lt;/h:panelGrid&gt;
-                    &lt;/h:panelGroup&gt;
-
-                    &lt;h:panelGroup id="data4group" layout="block"&gt;
-                        &lt;h2&gt;Data 4 data set&lt;/h2&gt;
-                        &lt;h:panelGrid columns="2"&gt;                       
-                            &lt;h:outputLabel for="data4name" value="Name:" /&gt;
-                            &lt;h:inputText id="data4name" value="#<span>{chartValuesBean.data4.name}</span>" size="15"  &gt;
-                                &lt;f:ajax render="chart" execute="chart" /&gt;
-                            &lt;/h:inputText&gt;
-
-                            &lt;h:outputLabel for="data4type" value="Type:" /&gt;
-                            &lt;h:selectOneMenu id="data4type" value="#<span>{chartValuesBean.data4.type}</span>" &gt;
-                                &lt;f:selectItem itemValue="line" itemLabel="LINE" /&gt;
-                                &lt;f:selectItem itemValue="bar" itemLabel="BAR" /&gt;
-                                &lt;f:selectItem itemValue="area" itemLabel="AREA" /&gt;
-                                &lt;f:selectItem itemValue="area-spline" itemLabel="AREASPLINE" /&gt;
-                                &lt;f:selectItem itemValue="area-step" itemLabel="AREASTEP" /&gt;
-                                &lt;f:selectItem itemValue="scatter" itemLabel="SCATTER" /&gt;
-                                &lt;f:selectItem itemValue="spline" itemLabel="SPLINE" /&gt;
-                                &lt;f:selectItem itemValue="step" itemLabel="STEP" /&gt;
-
-                                &lt;f:ajax render="chart" execute="chart" /&gt;
-                            &lt;/h:selectOneMenu&gt;
-
-                            &lt;h:outputLabel for="data4color" value="Color:" /&gt;
-                            &lt;h:inputText id="data4color" value="#<span>{chartValuesBean.data4.color}</span>" size="15"  &gt;
-                                &lt;f:ajax render="chart" execute="chart" /&gt;
-                            &lt;/h:inputText&gt;
-                        &lt;/h:panelGrid&gt;
-                    &lt;/h:panelGroup&gt;
-                &lt;/h:panelGrid&gt;
-            &lt;/h:form&gt;
-        </ui:define>
-        <ui:define name="javaCode">
-        @ManagedBean(name = "chartValuesBean")
-        @ViewScoped
-        public class ChartValuesBean implements Serializable {
-
-            private final Data data = new Data();
-            private C3ViewDataSet data1 = new C3ViewDataSet("Data sample 1",
-                    new C3DataSet(Arrays.asList(22, 91, 158, 93, 201, 11)), "#D7F707");
-            private C3ViewDataSet data2 = new C3ViewDataSet("Data sample 2",
-                    new C3DataSet(Arrays.asList(1, 72, 23, 33, 21)), "#A3BA0B");
-            private C3ViewDataSet data3 = new C3ViewDataSet("Data sample 3",
-                    new C3DataSet(Arrays.asList(45, 231, 2, 151, 341, 254)), "#BBC961");
-            private C3ViewDataSet data4 = new C3ViewDataSet("Data sample 4",
-                    new C3DataSet(Arrays.asList(88, 13, 258, 211, 151)), "#EAFA7F");
-
-            @PostConstruct
-            public void init() {
-                data.getDataSets().add(data1);
-                data.getDataSets().add(data2);
-                data.getDataSets().add(data3);
-                data.getDataSets().add(data4);
-            }
-
-            public Data getData() {
-                return data;
-            }
-
-            public C3ViewDataSet getData1() {
-                return data1;
-            }
-
-            public void setData1(C3ViewDataSet data1) {
-                this.data1 = data1;
-            }
-
-            public C3ViewDataSet getData2() {
-                return data2;
-            }
-
-            public void setData2(C3ViewDataSet data2) {
-                this.data2 = data2;
-            }
-
-            public C3ViewDataSet getData3() {
-                return data3;
-            }
-
-            public void setData3(C3ViewDataSet data3) {
-                this.data3 = data3;
-            }
-
-            public C3ViewDataSet getData4() {
-                return data4;
-            }
-
-            public void setData4(C3ViewDataSet data4) {
-                this.data4 = data4;
-            }
-        }
         </ui:define>
     </ui:composition>
 </html>

@@ -1,0 +1,33 @@
+<h:form>
+    <p:accordionPanel >
+        <p:tab title="Chart #1">
+            <c3:bar id="bar" data="#{primefacesIntegrationBean.data1}" value="#{primefacesIntegrationBean.selectedDataSet}">
+                <f:valueChangeListener type="org.kivio.showcase.listener.DataChangeValueListener" />
+                <p:ajax update="msg" listener="#{primefacesIntegrationBean.showMessageDialog}"/>
+            </c3:bar>
+            <h:panelGrid columns="3">
+                <p:commandButton value="Show in basic dialog" type="button" onclick="PF('dlg1').show();" />
+                <p:commandButton value="Show in dialog with effects" type="button" onclick="PF('dlg2').show();" />
+            </h:panelGrid>
+            <p:message id="msg" for="bar" />
+
+            <p:dialog header="Basic Dialog" widgetVar="dlg1" height="400" width="600">
+                <c3:bar id="bar1" data="#{primefacesIntegrationBean.data1}" style="width: 600px; height: 400px;"/>
+            </p:dialog>
+
+            <p:dialog header="Effects" widgetVar="dlg2" showEffect="explode"  hideEffect="bounce"  height="400" width="600">
+                <c3:bar id="bar3" data="#{primefacesIntegrationBean.data1}" style="width: 600px; height: 400px;"/>
+            </p:dialog>
+
+        </p:tab>
+        <p:tab title="Chart #2">
+            <c3:pie data="#{primefacesIntegrationBean.data2}" />
+        </p:tab>
+        <p:tab title="Chart #3">
+            <c3:gauge data="#{primefacesIntegrationBean.data3}" />
+        </p:tab>
+        <p:tab title="Chart #4">
+            <c3:spline data="#{primefacesIntegrationBean.data4}" />
+        </p:tab>
+    </p:accordionPanel>
+</h:form>

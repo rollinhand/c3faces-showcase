@@ -1,0 +1,16 @@
+<h:form>
+    <c3:line id="chart" data="#{chartPropertiesFaceletBean.data}" >
+        <c3:grids>
+            <c3:gridX text="X Grid - 1" value="1" />
+            <c3:gridX text="X Grid - 2" value="2.5" />
+            <c3:gridY text="Y Grid - 1" value="187" />
+        </c3:grids>
+        <c3:regions>
+            <c3:region axis="x" start="1" end="2" />
+        </c3:regions>
+        <c3:point expandR="7" r="5" selectR="10" />
+        <c3:legend position="INSET" insetAnchor="TOPLEFT" insetStep="1" />
+        <c3:subchart show="true" height="40" />
+        <c3:padding left="100" />
+    </c3:line>
+</h:form>

@@ -1,0 +1,23 @@
+Label,Outcome,FaceletCode,JavaCode
+"Examples","c1",,
+"Changing chart's data","chart_values","chart-values.txt","ChartValuesBean.java"
+"Chart properties defined in Facelet","chart_properties_facelet","chart-properties.txt","ChartPropertiesFaceletBean.java"
+"Dynamically change chart type","change_chart_type","change-chart-type.txt","ChangeChartTypeBean.java"
+"Value change listener","chart_value_listener","chart-value-listener.txt","ChartValueChangeListenerBean.java;DataChangeValueListener.java"
+"Integration with PrimeFaces","primefaces_integration","primefaces-integration.txt","PrimefacesIntegrationBean.java;DataChangeValueListener.java"
+"Integration with BootsFaces","bootsfaces_integration",,
+"Complex animations","c3",,
+"Bulk server side changes","bulk_changes","bulk-changes.txt","SandboxBean.java"
+"Bulk editable server side changes","bulk_changes_editable","bulk-changes-editable.txt","EditableComplexAnimationBean.java"
+"Chart types","c5",,
+"Area","area","area.txt","ChartTypesBean.java"
+"Area-spline","area-spline","area-spline.txt","ChartTypesBean.java"
+"Area-step","area-step","area-step.txt","ChartTypesBean.java"
+"Bar","bar","bar.txt","ChartTypesBean.java"
+"Donut","donut","donut.txt","ChartTypesBean.java"
+"Gauge","gauge","gauge.txt","ChartTypesBean.java"
+"Pie","pie","pie.txt","ChartTypesBean.java"
+"Line","line","line.txt","ChartTypesBean.java"
+"Scatter","scatter","scatter.txt","ChartTypesBean.java"
+"Spline","spline","spline.txt","ChartTypesBean.java"
+"Step","step","step.txt","ChartTypesBean.java"

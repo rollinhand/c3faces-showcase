@@ -5,46 +5,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-    <ui:composition template="main-template.xhtml" >
-        <ui:define name="pageName">Bar</ui:define>
-
-        <ui:define name="chart">
+    <ui:composition template="c3facesTemplate.xhtml">
+        <ui:define name="description">
+            <h1>Bar</h1>
+        </ui:define>
+        <ui:define name="facelet-code">
             <h:form>
                 <c3:bar data="#{chartTypesBean.data}" />
             </h:form>
-        </ui:define>
-        <ui:define name="faceletCode">
-            &lt;h:form&gt;
-                 &lt;c3:bar data="#<span>{chartTypesBean.data}</span>" /&gt;
-            &lt;/h:form&gt;
-        </ui:define>
-        <ui:define name="javaCode">
-            @ManagedBean(name = "chartTypesBean")
-            @RequestScoped
-            public class ChartTypesBean implements Serializable {
-
-            private Data data = new Data();
-
-            @PostConstruct
-            public void init() {
-                data.getDataSets().add(new C3ViewDataSet("Data sample 1",
-                 new C3DataSet(Arrays.asList(22, 91, 158, 93, 201, 11)), "#1060E0"));
-                data.getDataSets().add(new C3ViewDataSet("Data sample 2",
-                 new C3DataSet(Arrays.asList(1, 72, 23, 33, 21)), "#16525E"));
-                data.getDataSets().add(new C3ViewDataSet("Data sample 3",
-                 new C3DataSet(Arrays.asList(45, 231, 2, 151, 341, 254)), "#0792AD"));
-                data.getDataSets().add(new C3ViewDataSet("Data sample 4",
-                 new C3DataSet(Arrays.asList(88, 13, 258, 211, 151)), "#8FE2F2"));
-            }
-
-            public Data getData() {
-                 return data;
-            }
-
-            public void setData(Data data) {
-                  this.data = data;
-              }
-            }
         </ui:define>
     </ui:composition>
 </html>

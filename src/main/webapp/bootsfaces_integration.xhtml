@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="c3facesTemplate.xhtml">
+        <ui:define name="description">
+            <h1>Integration with Bootsfaces</h1>
+            <p>As provided with this showcase, C3Faces works perfectly together with
+                <a href="http://www.bootsfaces.org" target="_blank">BootsFaces</a>.</p>
+            <p>There is currently one bug in C3.js as listed on <a href="https://github.com/krispo/angular-nvd3/issues/40" target="_blank">GitHub issues</a>
+                concerning the calculated width of the generated <i>svg</i>-tag in combination with responsive page design.
+                This can be fixed by CSS 3 width attribute:</p>
+
+            <pre><code>.c3 > svg { width:100% !important; }</code></pre>
+
+        </ui:define>
+    </ui:composition>
+</html>

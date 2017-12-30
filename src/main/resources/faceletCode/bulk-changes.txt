@@ -1,0 +1,30 @@
+<h:form>
+    <b:panelGrid columns="4">
+        <h:commandButton value="Non-ajax request" />
+
+        <h:commandButton value="Hide chart"
+                         action="#{sandboxBean.setRendered(false)}">
+            <f:ajax execute="@form" render="@form" />
+        </h:commandButton>
+        <h:commandButton value="Show chart"
+                         action="#{sandboxBean.setRendered(true)}">
+            <f:ajax execute="@form" render="@form" />
+        </h:commandButton>
+
+        <h:commandButton value="Change chart's values"
+                         action="#{sandboxBean.resizeTest()}"
+                         rendered="#{sandboxBean.counter lt 6}">
+            <f:ajax execute="@form" render="@form" />
+        </h:commandButton>
+    </b:panelGrid>
+    <c3:spline id="pie" data="#{sandboxBean.data}"
+               binding="#{sandboxBean.chart}"
+               rendered="#{sandboxBean.rendered}" >
+        <c3:size height="300" width="300" />
+        <c3:grids>
+            <c3:gridX text="test" value="1" />
+        </c3:grids>
+        <c3:legend show="fase" />
+        <f:ajax execute="@this" render="@this" event="click"  />
+    </c3:spline>
+</h:form>
