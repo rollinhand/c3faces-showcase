@@ -179,7 +179,7 @@
                 <configuration>
                     <images>
                         <image>
-                            <name>kivio:c3faces-showcase</name>
+                            <name>c3faces-showcase:latest</name>
                             <alias>showcase</alias>
                             <build>
                                 <dockerFileDir>${project.basedir}/src/main/docker</dockerFileDir>

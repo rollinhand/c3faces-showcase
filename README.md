@@ -55,19 +55,19 @@ The image is available as **c3faces-showcase** or with its alias **showcase**.
 A container based on that image can be started as follows:
 
 ```
-docker run -d -p 8080:8080 showcase
+docker run -d -p 8080:8080 --name showcase c3faces-showcase
 ```
 
 Or if you want to use a different port, because 8080 is reserved by a different instance,
 execute the following command:
 
 ```
-docker run -d -p 8081:8080 showcase
+docker run -d -p 8081:8080 --name showcase c3faces-showcase
 ```
 
 In case of error a container can be automatically restarted:
 
 ```
-docker run -d -p 8081:8080 --restart unless-stopped showcase
+docker run -d -p 8081:8080 --restart unless-stopped --name showcase c3faces-showcase
 ```
 

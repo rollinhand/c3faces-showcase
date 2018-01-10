@@ -1,0 +1,6 @@
+version: 1.0
+
+services:
+  c3faces-showcase:
+    build: .
+    image: c3faces-showcase:latest
