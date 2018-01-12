@@ -68,6 +68,6 @@ docker run -d -p 8081:8080 --name showcase c3faces-showcase
 In case of error a container can be automatically restarted:
 
 ```
-docker run -d -p 8081:8080 --restart unless-stopped --name showcase c3faces-showcase
+docker run -d -p 8081:8080 --restart unless-stopped --name showcase --network=kivio c3faces-showcase
 ```
 
