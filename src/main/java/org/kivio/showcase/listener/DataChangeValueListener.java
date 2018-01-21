@@ -1,6 +1,6 @@
 package org.kivio.showcase.listener;
 
-import com.martinlinha.c3faces.model.C3ViewDataSet;
+import org.kivio.c3faces.model.C3ViewDataSet;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
@@ -9,7 +9,7 @@ import javax.faces.event.ValueChangeListener;
 
 /**
  *
- * @author Martin Linha
+ * @author Björn Berg
  */
 public class DataChangeValueListener implements ValueChangeListener {
 

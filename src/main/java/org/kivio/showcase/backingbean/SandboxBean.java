@@ -1,13 +1,13 @@
 package org.kivio.showcase.backingbean;
 
-import com.martinlinha.c3faces.component.C3Chart;
-import com.martinlinha.c3faces.constants.ChartType;
-import com.martinlinha.c3faces.model.C3DataSet;
-import com.martinlinha.c3faces.model.C3ViewDataSet;
-import com.martinlinha.c3faces.script.property.Data;
-import com.martinlinha.c3faces.script.property.GridProperties;
-import com.martinlinha.c3faces.script.property.Legend;
-import com.martinlinha.c3faces.script.property.Size;
+import org.kivio.c3faces.component.C3Chart;
+import org.kivio.c3faces.constants.ChartType;
+import org.kivio.c3faces.model.C3DataSet;
+import org.kivio.c3faces.model.C3ViewDataSet;
+import org.kivio.c3faces.script.property.Data;
+import org.kivio.c3faces.script.property.GridProperties;
+import org.kivio.c3faces.script.property.Legend;
+import org.kivio.c3faces.script.property.Size;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -17,7 +17,7 @@ import javax.faces.bean.ViewScoped;
 
 /**
  *
- * @author Martin Linha
+ * @author Björn Berg
  */
 @ManagedBean(name = "sandboxBean")
 @ViewScoped

@@ -1,8 +1,8 @@
 package org.kivio.showcase.backingbean;
 
-import com.martinlinha.c3faces.model.C3DataSet;
-import com.martinlinha.c3faces.model.C3ViewDataSet;
-import com.martinlinha.c3faces.script.property.Data;
+import org.kivio.c3faces.model.C3DataSet;
+import org.kivio.c3faces.model.C3ViewDataSet;
+import org.kivio.c3faces.script.property.Data;
 import java.io.Serializable;
 import java.util.Arrays;
 import javax.annotation.PostConstruct;
@@ -11,7 +11,7 @@ import javax.faces.bean.ViewScoped;
 
 /**
  *
- * @author Martin Linha
+ * @author Björn Berg
  */
 @ManagedBean(name = "chartValueChangeListenerBean")
 @ViewScoped

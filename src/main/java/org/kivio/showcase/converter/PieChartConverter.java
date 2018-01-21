@@ -7,9 +7,9 @@ import javax.faces.convert.FacesConverter;
 
 /**
  *
- * @author Martin Linha
+ * @author Björn Berg
  */
-@FacesConverter(value = "com.martinlinha.showcase.PieChartConverter")
+@FacesConverter(value = "org.kivio.showcase.PieChartConverter")
 public class PieChartConverter implements Converter {
 
     @Override
