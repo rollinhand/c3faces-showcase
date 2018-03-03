@@ -1,6 +1,7 @@
 Label,Outcome,FaceletCode,JavaCode
 "Examples","c1",,
 "Changing chart's data","chart_values","chart-values.txt","ChartValuesBean.java"
+"Define axes","axis","axis.txt","CategoryBean.java;ChartTypesBean.java"
 "Chart properties defined in Facelet","chart_properties_facelet","chart-properties.txt","ChartPropertiesFaceletBean.java"
 "Dynamically change chart type","change_chart_type","change-chart-type.txt","ChangeChartTypeBean.java"
 "Value change listener","chart_value_listener","chart-value-listener.txt","ChartValueChangeListenerBean.java;DataChangeValueListener.java"

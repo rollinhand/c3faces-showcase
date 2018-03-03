@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c3="http://kivio.org/c3faces"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition template="c3facesTemplate.xhtml">
+        <ui:define name="description">
+            <h1>Using categories</h1>
+        </ui:define>
+        <ui:define name="facelet-code">
+            <h:form>
+                <c3:bar data="#{chartTypesBean.data}">
+                    <c3:axes>
+                        <c3:axisX type="category" categories="#{categoryBean.category}" />
+                        <c3:axisY show="false" />
+                    </c3:axes>
+                </c3:bar>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

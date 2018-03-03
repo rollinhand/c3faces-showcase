@@ -1,0 +1,8 @@
+<h:form>
+    <c3:bar data="#{chartTypesBean.data}">
+        <c3:axes>
+            <c3:axisX type="category" categories="#{categoryBean.category}" />
+            <c3:axisY show="false" />
+        </c3:axes>
+    </c3:bar>
+</h:form>
