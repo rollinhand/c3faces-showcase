@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>showcase</artifactId>
     <groupId>org.kivio</groupId>
@@ -78,6 +79,16 @@
             <artifactId>mockito-all</artifactId>
             <version>1.10.19</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant-jsch</artifactId>
+            <version>1.9.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.53</version>
         </dependency>
     </dependencies>
 
@@ -170,6 +181,12 @@
                     <tomeeVersion>7.0.4</tomeeVersion>
                     <tomeeClassifier>webprofile</tomeeClassifier>
                     <warFile>${project.build.directory}/${project.build.finalName}.${project.packaging}</warFile>
+                    <synchronization>
+                        <extensions>
+                            <extension>.class</extension>
+                            <extension>.xhtml</extension>
+                        </extensions>
+                    </synchronization>
                 </configuration>
             </plugin>
             <plugin>
@@ -196,6 +213,36 @@
                         </image>
                     </images>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>deploy</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="Starting deployment to vserver 1..."/>
+                                <scp todir="root@vserver1:/root" failonerror="true">
+                                    <fileset dir="${project.build.outputDirectory}/docker/${project.artifactId}/latest/tmp">
+                                        <include src="*.zip" />
+                                    </fileset>
+                                </scp>
+
+                                <echo message="Deployment finished" />
+
+                                <!-- Task defintions -->
+                                <taskdef name="scp"
+                                         classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp"
+                                         classpathref="maven.plugin.classpath"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
