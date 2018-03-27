@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>showcase</artifactId>
     <groupId>org.kivio</groupId>
-    <version>1.2</version>
+    <version>1.3</version>
     <packaging>war</packaging>
 
     <name>C3Faces showcase</name>
@@ -213,36 +213,6 @@
                         </image>
                     </images>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
-                <executions>
-                    <execution>
-                        <id>deploy</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <echo message="Starting deployment to vserver 1..."/>
-                                <scp todir="root@vserver1:/root" failonerror="true">
-                                    <fileset dir="${project.build.outputDirectory}/docker/${project.artifactId}/latest/tmp">
-                                        <include src="*.zip" />
-                                    </fileset>
-                                </scp>
-
-                                <echo message="Deployment finished" />
-
-                                <!-- Task defintions -->
-                                <taskdef name="scp"
-                                         classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp"
-                                         classpathref="maven.plugin.classpath"/>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
