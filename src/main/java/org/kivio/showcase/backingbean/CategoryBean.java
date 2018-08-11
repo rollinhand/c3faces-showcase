@@ -1,6 +1,6 @@
 package org.kivio.showcase.backingbean;
 
-import org.kivio.c3faces.model.C3Category;
+import org.kivio.c3faces.model.C3CategorySet;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -15,18 +15,18 @@ import java.io.Serializable;
 @RequestScoped
 public class CategoryBean implements Serializable {
 
-    private transient C3Category c3Category;
+    private transient C3CategorySet c3Category;
 
     @PostConstruct
     public void init() {
-        c3Category = new C3Category(new String []{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat"});
+        c3Category = new C3CategorySet(new String []{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat"});
     }
 
-    public C3Category getCategory() {
+    public C3CategorySet getCategory() {
         return c3Category;
     }
 
-    public void setCategory(C3Category c3Category) {
+    public void setCategory(C3CategorySet c3Category) {
         this.c3Category = c3Category;
     }
 }
