@@ -5,3 +5,5 @@
 *.iml
 showcase.iml
 /update.sh
+/.DS_Store
+/.classpath
